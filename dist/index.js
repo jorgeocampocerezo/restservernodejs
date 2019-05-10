@@ -31,5 +31,5 @@ mongoose_1.default.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mong
 });
 // Levantar express
 server.start(() => {
-    console.log(`Servidor corriendo en puerto ${server.port}`);
+    console.log(`Servidor corriendo en puerto ${server.PORT}`);
 });

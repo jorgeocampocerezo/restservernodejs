@@ -33,6 +33,46 @@ postRoutes.get('/', async (req: any, res: Response) => {
 
 });
 
+//cuenta posts 
+
+postRoutes.get('/numeroPosts', [verificaToken], (req:any, res:Response) => {
+
+    
+    Post.find({})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+     
+       if(!posts){
+           return res.status(400).json({
+               ok:false,
+               mensaje: `No existe un post con ese Id ${req.params.id}`,
+
+               
+           })
+       }
+       if(err){
+        return res.status(500).json({
+            ok:false,
+            err
+            
+        })
+    }
+       
+    Post.count({}, (err, suma)=>{
+        res.json({
+            ok: true,
+           post: posts,
+           suma
+        });
+    })
+   
+   });
+});
+/////
+
+
+
 
 
 // Crear POST

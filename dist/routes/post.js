@@ -34,6 +34,33 @@ postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
         posts
     });
 }));
+//cuenta posts 
+postRoutes.get('/numeroPosts', [autenticacion_1.verificaToken], (req, res) => {
+    post_model_1.Post.find({})
+        .populate('usuario', '-password')
+        .exec((err, posts) => {
+        if (!posts) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: `No existe un post con ese Id ${req.params.id}`,
+            });
+        }
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
+        post_model_1.Post.count({}, (err, suma) => {
+            res.json({
+                ok: true,
+                post: posts,
+                suma
+            });
+        });
+    });
+});
+/////
 // Crear POST
 postRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => {
     const body = req.body;
