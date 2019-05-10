@@ -8,23 +8,22 @@ const usuario_1 = __importDefault(require("./routes/usuario"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const post_1 = __importDefault(require("./routes/post"));
-//para subir archivos es un midelwelrs
+const producto_1 = __importDefault(require("./routes/producto"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const server = new server_1.default();
 // Body parser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
-//fileUppload
-server.app.use(express_fileupload_1.default());
+//file-upload
+server.app.use(express_fileupload_1.default({ useTempFiles: true }));
 // Rutas de mi app
 server.app.use('/user', usuario_1.default);
-server.app.use('/post', post_1.default);
+server.app.use('/posts', post_1.default);
+server.app.use('/productos', producto_1.default);
 // Conectar DB
-//mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/fotos
-//mongodb://localhost:27017/fotosgram
-mongoose_1.default.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/fotos', { useNewUrlParser: true }, function (err) {
+mongoose_1.default.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/ferias2019?retryWrites=true', { useNewUrlParser: true }, function (err) {
     if (err) {
-        console.log('error');
+        throw err;
     }
     else {
         console.log('Base de datos ONLINE');

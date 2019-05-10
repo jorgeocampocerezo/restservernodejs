@@ -2,26 +2,37 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const postSchema = new mongoose_1.Schema({
-    //fecha de creacion
     created: {
         type: Date
     },
-    //mensaje de post
-    mensaje: {
+    titulo: {
+        type: String,
+        required: [true, 'El titulo es nesesario']
+    },
+    imgs: [{
+            type: String,
+            required: [true, 'La imagen es nesesaria']
+        }],
+    ubicacion: {
+        type: String // -13.313123, 12.3123123
+    },
+    categoria: {
+        type: String,
+        required: true
+    },
+    transporte: {
         type: String
     },
-    //imagen de subida
-    imgs: [{
-            type: String
-        }],
-    //latidus para la ubicacion 
-    coords: {
+    localidad: {
+        type: String
+    },
+    descripcion: {
         type: String
     },
     usuario: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Usuario',
-        required: [true, 'debe de existir una referencia a usuario']
+        required: [true, 'Debe de existir una referencia a un usuario']
     }
 });
 postSchema.pre('save', function (next) {

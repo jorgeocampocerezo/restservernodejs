@@ -1,50 +1,59 @@
-import {Schema,  model, Document} from 'mongoose';
 
-const postSchema = new Schema ({
+import { Schema, Document, model } from 'mongoose';
 
-    //fecha de creacion
-    created:{
+const postSchema = new Schema({
+
+    created: {
         type: Date
-
     },
-    //mensaje de post
-    mensaje:{
-        type: String
+    titulo: {
+        type: String,
+        required: [ true, 'El titulo es nesesario' ]
     },
-    //imagen de subida
-    imgs:[{
-        type: String
+    imgs: [{
+        type: String,
+        required: [ true, 'La imagen es nesesaria' ]
 
     }],
-    //latidus para la ubicacion 
-    coords:{
+    ubicacion: {
+        type: String   // -13.313123, 12.3123123
+    },
+    categoria:{
+
+        type:String,
+        required:true
+    },
+    transporte:{
         type:String
     },
-
-
-    usuario:{
-        type:Schema.Types.ObjectId,
+    localidad:{
+        type:String
+    },
+    descripcion:{
+        type:String
+    },
+    usuario: {
+        type: Schema.Types.ObjectId,
         ref: 'Usuario',
-        required: [ true, 'debe de existir una referencia a usuario']    
+        required: [ true, 'Debe de existir una referencia a un usuario' ]
     }
-
 });
 
-
-postSchema.pre<IPost>('save', function(next){
+postSchema.pre<IPost>('save', function( next ) {
     this.created = new Date();
     next();
 });
 
-
-interface IPost extends Document{
+interface IPost extends Document {
     created: Date;
-    mensaje: string;
+    titulo: string;
     img: string[];
-    coords: string;
-    usuario:string;
-
+    ubicacion: string;
+    localidad:string;
+    categoria:string;
+    transporte:string;
+    descripcion:string;
+    usuario: string;
 }
-
 
 export const Post = model<IPost>('Post', postSchema);

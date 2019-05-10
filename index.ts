@@ -3,18 +3,10 @@ import userRoutes from './routes/usuario';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import postRoutes from './routes/post';
-
-//para subir archivos es un midelwelrs
-import fileUpload from 'express-fileupload'
-
+import productoRoutes from './routes/producto';
+import fileUpload from 'express-fileupload';
 
 const server = new Server();
-
-
-
-
-
-
 
 
 // Body parser
@@ -22,24 +14,23 @@ server.app.use( bodyParser.urlencoded({ extended: true }));
 server.app.use( bodyParser.json() );
 
 
-//fileUppload
-
-server.app.use(fileUpload());
-
+//file-upload
+server.app.use( fileUpload({useTempFiles:true}));
 
 
 // Rutas de mi app
 server.app.use('/user', userRoutes );
-server.app.use('/post', postRoutes );
+server.app.use('/posts', postRoutes );
+server.app.use('/productos', productoRoutes );
+
+
 
 // Conectar DB
-//mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/fotos
-//mongodb://localhost:27017/fotosgram
-mongoose.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/fotos', 
+mongoose.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/ferias2019?retryWrites=true', 
                 { useNewUrlParser: true }, function( err ){
 
    if ( err ){
-   console.log('error');
+   throw err;
 }else{
 
 
@@ -47,8 +38,7 @@ mongoose.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/fo
 
 }
 });
-
 // Levantar express
 server.start( () => {
-    console.log(`Servidor corriendo en puerto ${ server.port }`);
+    console.log(`Servidor corriendo en puerto ${ server.PORT }`);
 });

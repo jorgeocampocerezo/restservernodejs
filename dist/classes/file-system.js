@@ -3,19 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
 const uniqid_1 = __importDefault(require("uniqid"));
 class FileSystem {
     constructor() { }
     ;
     guardarImagenTemporal(file, userId) {
         return new Promise((resolve, reject) => {
-            //crear carpetas 
+            // Crear carpetas
             const path = this.crearCarpetaUsuario(userId);
-            //nombre archivo
+            // Nombre archivo
             const nombreArchivo = this.generarNombreUnico(file.name);
-            //mover el archivo del temp a nuestra carpeta
+            // Mover el archivo del Temp a nuestra carpeta
             file.mv(`${path}/${nombreArchivo}`, (err) => {
                 if (err) {
                     reject(err);
@@ -27,6 +27,7 @@ class FileSystem {
         });
     }
     generarNombreUnico(nombreOriginal) {
+        // 6.copy.jpg
         const nombreArr = nombreOriginal.split('.');
         const extension = nombreArr[nombreArr.length - 1];
         const idUnico = uniqid_1.default();
@@ -35,7 +36,7 @@ class FileSystem {
     crearCarpetaUsuario(userId) {
         const pathUser = path_1.default.resolve(__dirname, '../uploads/', userId);
         const pathUserTemp = pathUser + '/temp';
-        //console.log('pathUser');
+        // console.log(pathUser);
         const existe = fs_1.default.existsSync(pathUser);
         if (!existe) {
             fs_1.default.mkdirSync(pathUser);
@@ -63,9 +64,9 @@ class FileSystem {
         return fs_1.default.readdirSync(pathTemp) || [];
     }
     getFotoUrl(userId, img) {
-        //path posts
+        // Path POSTs
         const pathFoto = path_1.default.resolve(__dirname, '../uploads', userId, 'posts', img);
-        //si no existe la imagen
+        // Si la imagen existe
         const existe = fs_1.default.existsSync(pathFoto);
         if (!existe) {
             return path_1.default.resolve(__dirname, '../assets/400x250.jpg');
