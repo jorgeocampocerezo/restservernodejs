@@ -267,6 +267,43 @@ postRoutes.get('/postUser/:termino', verificaToken, (req, res) => {
    });
 });
 
+//suma los post del usuario
+postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
+
+    let  termino = req.params.termino
+    Post.find({usuario: termino})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+    if(!posts){
+        return res.json({
+            ok:false,
+            posts:[]
+        })
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
+
+       Post.count({usuario: termino},(err, suma)=>{
+
+           res.json({
+               ok: true,
+              post: posts,
+              suma
+           });
+    
+       })
+      
+   });
+});
+
+
 
 //busquedas por terminos
 

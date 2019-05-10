@@ -17,6 +17,33 @@ const producto_model_1 = require("../models/producto.model");
 const file_system_1 = __importDefault(require("../classes/file-system"));
 const productoRoutes = express_1.Router();
 const fileSystem = new file_system_1.default();
+//listar post por categoria
+productoRoutes.get('/productosCategoria/:termino', autenticacion_1.verificaToken, (req, res) => {
+    let termino = req.params.termino;
+    producto_model_1.Producto.find({ post: termino })
+        .populate('usuario', '-password')
+        .exec((err, posts) => {
+        if (!posts) {
+            return res.json({
+                ok: false,
+                posts: []
+            });
+        }
+        if (err) {
+            return res.json({
+                err
+            });
+        }
+        ;
+        producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                post: posts,
+                suma
+            });
+        });
+    });
+});
 //******************************************************************************//
 //crear un producto
 //******************************************************************************//

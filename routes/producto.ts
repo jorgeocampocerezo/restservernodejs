@@ -10,6 +10,44 @@ import FileSystem from '../classes/file-system';
 const productoRoutes =  Router();
 const fileSystem = new FileSystem();
 
+//listar post por categoria
+
+productoRoutes.get('/productosCategoria/:termino', verificaToken, (req, res) => {
+
+    let  termino = req.params.termino
+    Producto.find({post: termino})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+    if(!posts){
+        return res.json({
+            ok:false,
+            posts:[]
+        })
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
+
+       Producto.count({post:termino}, (err, suma)=>{
+
+           res.json({
+               ok: true,
+              post: posts,
+              suma
+           });
+       })
+      
+   
+   });
+});
+
+
 //******************************************************************************//
 
 //crear un producto

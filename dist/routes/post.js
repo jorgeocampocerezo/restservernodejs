@@ -194,6 +194,33 @@ postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) =
         });
     });
 });
+//suma los post del usuario
+postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req, res) => {
+    let termino = req.params.termino;
+    post_model_1.Post.find({ usuario: termino })
+        .populate('usuario', '-password')
+        .exec((err, posts) => {
+        if (!posts) {
+            return res.json({
+                ok: false,
+                posts: []
+            });
+        }
+        if (err) {
+            return res.json({
+                err
+            });
+        }
+        ;
+        post_model_1.Post.count({ usuario: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                post: posts,
+                suma
+            });
+        });
+    });
+});
 //busquedas por terminos
 postRoutes.get('/:termino', autenticacion_1.verificaToken, (req, res) => {
     let termino = req.params.termino;
