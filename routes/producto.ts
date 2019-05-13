@@ -22,7 +22,7 @@ productoRoutes.get('/productosCategoria/:termino', verificaToken, (req, res) => 
     if(!posts){
         return res.json({
             ok:false,
-            posts:[]
+            posts:[] 
         })
     }  
     

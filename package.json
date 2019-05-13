@@ -4,7 +4,6 @@
     "main": "index.js",
     "scripts": {
         "start": "node dist",
-
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
@@ -21,6 +20,7 @@
     },
     "devDependencies": {
         "@types/bcrypt": "^3.0.0",
+        "@types/cors": "^2.8.5",
         "@types/express": "^4.16.1",
         "@types/express-fileupload": "^0.4.0",
         "@types/jsonwebtoken": "^8.3.2",
