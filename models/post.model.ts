@@ -32,6 +32,9 @@ const postSchema = new Schema({
     descripcion:{
         type:String
     },
+    departamento:{
+        type: String
+    },
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
@@ -54,6 +57,7 @@ interface IPost extends Document {
     transporte:string;
     descripcion:string;
     usuario: string;
+    departamento:string;
 }
 
 export const Post = model<IPost>('Post', postSchema);

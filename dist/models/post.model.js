@@ -29,6 +29,9 @@ const postSchema = new mongoose_1.Schema({
     descripcion: {
         type: String
     },
+    departamento: {
+        type: String
+    },
     usuario: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Usuario',
