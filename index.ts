@@ -28,7 +28,9 @@ server.app.use('/posts', postRoutes );
 server.app.use('/productos', productoRoutes );
 
 
-
+server.app.get('/', function(req, res, next) {
+    // Handle the get for this route
+  });
 // Conectar DB
 mongoose.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/ferias2019?retryWrites=true', 
                 { useNewUrlParser: true }, function( err ){

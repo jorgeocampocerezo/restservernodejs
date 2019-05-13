@@ -23,6 +23,9 @@ server.app.use(cors_1.default({ origin: true, credentials: true }));
 server.app.use('/user', usuario_1.default);
 server.app.use('/posts', post_1.default);
 server.app.use('/productos', producto_1.default);
+server.app.get('/', function (req, res, next) {
+    // Handle the get for this route
+});
 // Conectar DB
 mongoose_1.default.connect('mongodb+srv://Jorge:$MoNgO12345$@cluster0-lrcxs.mongodb.net/ferias2019?retryWrites=true', { useNewUrlParser: true }, function (err) {
     if (err) {
