@@ -128,7 +128,7 @@ postRoutes.put('/:id', [autenticacion_1.verificaToken], (req, res) => {
                 err
             });
         }
-        pDB.gps = body.titulo || req.params.gps;
+        pDB.gps = body.gps || req.params.gps;
         pDB.titulo = body.titulo || req.params.titulo;
         pDB.perfil = body.perfil || req.params.perfil;
         pDB.organiza = body.organiza || req.params.organiza;
