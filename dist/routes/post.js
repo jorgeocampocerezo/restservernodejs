@@ -128,8 +128,14 @@ postRoutes.put('/:id', [autenticacion_1.verificaToken], (req, res) => {
                 err
             });
         }
+        pDB.gps = body.titulo || req.params.gps;
         pDB.titulo = body.titulo || req.params.titulo;
-        pDB.ubicacion = body.ubicacion || req.params.ubicacion;
+        pDB.perfil = body.ubicacion || req.params.perfil;
+        pDB.organiza = body.ubicacion || req.params.organiza;
+        pDB.actividades = body.ubicacion || req.params.actividades;
+        pDB.entrada = body.ubicacion || req.params.entrada;
+        pDB.organiza = body.ubicacion || req.params.organiza;
+        pDB.fechas = body.ubicacion || req.params.fechas;
         pDB.transporte = body.transporte || req.params.transporte;
         pDB.categoria = body.categoria || req.params.categoria;
         pDB.localidad = body.localidad || req.params.localidad;
