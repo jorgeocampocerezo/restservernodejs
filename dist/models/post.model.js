@@ -13,7 +13,7 @@ const postSchema = new mongoose_1.Schema({
             type: String,
             required: [true, 'La imagen es nesesaria']
         }],
-    ubicacion: {
+    gps: {
         type: String // -13.313123, 12.3123123
     },
     categoria: {

@@ -15,7 +15,7 @@ const postSchema = new Schema({
         required: [ true, 'La imagen es nesesaria' ]
 
     }],
-    ubicacion: {
+    gps: {
         type: String   // -13.313123, 12.3123123
     },
     categoria:{
@@ -51,7 +51,7 @@ interface IPost extends Document {
     created: Date;
     titulo: string;
     img: string[];
-    ubicacion: string;
+    gps: string;
     localidad:string;
     categoria:string;
     transporte:string;
