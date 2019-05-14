@@ -32,7 +32,22 @@ const postSchema = new Schema({
     descripcion:{
         type:String
     },
-    departamento:{
+    perfil:{
+        type: String
+    },
+    fechas:{
+        type: String
+    },
+    horarios:{
+        type: String
+    },
+    actividades:{
+        type: String
+    },
+    entrada:{
+        type: String
+    },
+    organiza:{
         type: String
     },
     usuario: {
@@ -57,7 +72,11 @@ interface IPost extends Document {
     transporte:string;
     descripcion:string;
     usuario: string;
-    departamento:string;
+    perfil:string;
+    fechas:string;
+    actividades:string;
+    entrada:string;
+    organiza:string
 }
 
 export const Post = model<IPost>('Post', postSchema);

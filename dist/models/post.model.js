@@ -29,7 +29,22 @@ const postSchema = new mongoose_1.Schema({
     descripcion: {
         type: String
     },
-    departamento: {
+    perfil: {
+        type: String
+    },
+    fechas: {
+        type: String
+    },
+    horarios: {
+        type: String
+    },
+    actividades: {
+        type: String
+    },
+    entrada: {
+        type: String
+    },
+    organiza: {
         type: String
     },
     usuario: {
