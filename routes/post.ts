@@ -184,7 +184,7 @@ postRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
          pDB.transporte = body.transporte || req.params.transporte;
          pDB.categoria = body.categoria || req.params.categoria;
          pDB.localidad = body.localidad || req.params.localidad;    
-         
+         pDB.referencias = body.referencias || req.params.referencias
 
          pDB.save((err,pGuardado)=>{
 

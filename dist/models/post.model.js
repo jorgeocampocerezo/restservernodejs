@@ -41,6 +41,9 @@ const postSchema = new mongoose_1.Schema({
     actividades: {
         type: String
     },
+    referencias: {
+        type: String
+    },
     entrada: {
         type: String
     },

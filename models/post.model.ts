@@ -44,6 +44,9 @@ const postSchema = new Schema({
     actividades:{
         type: String
     },
+    referencias:{
+        type: String
+    },
     entrada:{
         type: String
     },
@@ -76,7 +79,8 @@ interface IPost extends Document {
     fechas:string;
     actividades:string;
     entrada:string;
-    organiza:string
+    organiza:string;
+    referencias:string;
 }
 
 export const Post = model<IPost>('Post', postSchema);
