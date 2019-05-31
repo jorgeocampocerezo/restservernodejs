@@ -10,7 +10,7 @@ import FileSystem from '../classes/file-system';
 const productoRoutes =  Router();
 const fileSystem = new FileSystem();
 
-//listar post por categoria
+//listar productos por categoria
 
 productoRoutes.get('/productosCategoria/:termino', verificaToken, (req, res) => {
 
