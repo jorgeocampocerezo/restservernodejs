@@ -12,7 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria/:termino', verificaToken, (req, res) => {
+productoRoutes.get('/productosCategoria/:termino', (req, res) => {
 
     let  termino = req.params.termino
     Producto.find({post: termino})
