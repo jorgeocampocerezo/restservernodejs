@@ -101,7 +101,7 @@ productoRoutes.get('/', (req:any, res:Response) => {
        if(!posts){
            return res.status(400).json({
                ok:false,
-               mensaje: `No existe un post con ese Id ${req.params.id}`,
+               mensaje: `No existe un post con ese Id actualizar`,
 
                
            })
