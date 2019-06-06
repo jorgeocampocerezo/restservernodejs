@@ -12,10 +12,9 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria/:termino',[verificaToken], async (req:any, res:Response) => {
+productoRoutes.get('/productosCategoria/',[verificaToken], async (req:any, res:Response) => {
 
-    let  termino = req.params.termino
-    await Producto.find({post: termino})
+    await Producto.find()
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
@@ -34,14 +33,7 @@ productoRoutes.get('/productosCategoria/:termino',[verificaToken], async (req:an
            
        };
 
-       Producto.count({post:termino}, (err, suma)=>{
-
-           res.json({
-               ok: true,
-              post: posts,
-              suma
-           });
-       })
+      
       
    
    });
