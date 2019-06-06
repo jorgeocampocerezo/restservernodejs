@@ -19,15 +19,13 @@ productoRoutes.get('/', async (req: any, res: Response) => {
     skip = skip * 10;
 
     const posts = await Producto.find()
-                            .sort({ _id: -1 })
-                            .skip( skip )
-                            .limit(10)
+                            
                             .populate('usuario', '-password')
                             .exec();
 
 
     res.json({
-        ok: true,
+        ok: false,
         pagina,
         posts
     });
@@ -236,7 +234,7 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
     const post = req.producto;
 
     res.json({
-        ok: true,
+        ok: false,
         post
     });
 
