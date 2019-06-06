@@ -12,7 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria/',[verificaToken], async (req:any, res:Response) => {
+productoRoutes.get('/productosCategoria',[verificaToken], async (req:any, res:Response) => {
 
     await Producto.find()
    .populate('usuario', '-password')
@@ -71,57 +71,7 @@ productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
     });
 
 });
-//******************************************************************************//
-
-
-
-//******************************************************************************//
-
-//actualizar producto
-
-//******************************************************************************//
-
-
-productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
-
-    
-    Producto.findById(req.params.id)
-   .populate('usuario', '-password')
-   .exec((err,posts)=>{
-
-     
-       if(!posts){
-           return res.status(400).json({
-               ok:false,
-               mensaje: `No existe un post con ese Id ${req.params.id}`,
-
-               
-           })
-       }
-       if(err){
-        return res.status(500).json({
-            ok:false,
-            err
-            
-        })
-    }
-       
-       res.json({
-           ok: true,
-          post: posts
-       });
-   
-   });
-});
-
-
-//******************************************************************************//
-
-
-
-
-
-//******************************************************************************//
+//******************************************************************************/
 //actualizar producto
 //******************************************************************************//
 productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
