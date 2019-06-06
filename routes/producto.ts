@@ -90,10 +90,10 @@ productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
 //******************************************************************************//
 
 
-productoRoutes.get('/:id', (req:any, res:Response) => {
+productoRoutes.get('/', (req:any, res:Response) => {
 
     
-    Producto.findById(req.params.id)
+    Producto.find()
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
