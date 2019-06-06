@@ -230,18 +230,18 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
 
 
 //******************************************************************************//
-//
-//productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
-//
-//    const post = req.post;
-//
-//    res.json({
-//        ok: true,
-//        post
-//    });
-//
-//});
-////******************************************************************************//
+
+productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
+
+    const post = req.producto;
+
+    res.json({
+        ok: true,
+        post
+    });
+
+});
+//******************************************************************************//
 
 
 export default productoRoutes;
