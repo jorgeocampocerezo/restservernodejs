@@ -12,17 +12,16 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosLista', async (req, res) => {
+productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 
     let  termino = req.params.termino
-    await Producto.find()
+    await Producto.find({post: termino})
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
     if(!posts){
         return res.json({
             ok:false,
-            mensaje:'todo mal',
             posts:[] 
         })
     }  
