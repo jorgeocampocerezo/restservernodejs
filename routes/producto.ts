@@ -12,38 +12,27 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
-productoRoutes.get('/', async (req, res) => {
+productoRoutes.get('/', async (req: any, res: Response) => {
 
-    let  termino = req.params.termino
-    await Producto.find()
-   .populate('usuario', '-password')
-   .exec((err,posts)=>{
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
 
-    if(!posts){
-        return res.json({
-            ok:false,
-            posts:[] 
-        })
-    }  
-    
-    if(err){
-           return res.json({
-            err
-           })
-               
-           
-       };
+    const posts = await Producto.find()
+                            .sort({ _id: -1 })
+                            .skip( skip )
+                            .limit(10)
+                            .populate('usuario', '-password')
+                            .exec();
 
-      Producto.count({post:termino}, (err, suma)=>{
-          res.json({
-              ok: true,
-             post: posts,
-             suma
-          });
-      })
-      
-   
-   });
+
+    res.json({
+        ok: true,
+        pagina,
+        posts
+    });
+
+
 });
 
 
