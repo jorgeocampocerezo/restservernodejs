@@ -12,7 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
-productoRoutes.get('/', async (req: any, res: Response) => {
+productoRoutes.put('/', async (req: any, res: Response) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
@@ -229,7 +229,7 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
 
 //******************************************************************************//
 
-productoRoutes.put('/', [ verificaToken ], ( req: any, res: Response ) => {
+productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
     const post = req.producto;
 
