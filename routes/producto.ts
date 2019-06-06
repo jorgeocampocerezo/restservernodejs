@@ -25,7 +25,7 @@ productoRoutes.get('/', async (req: any, res: Response) => {
 
 
     res.json({
-        ok: false,
+        ok: true,
         pagina,
         posts
     });
@@ -229,12 +229,12 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
 
 //******************************************************************************//
 
-productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
+productoRoutes.put('/', [ verificaToken ], ( req: any, res: Response ) => {
 
     const post = req.producto;
 
     res.json({
-        ok: false,
+        ok: true,
         post
     });
 
