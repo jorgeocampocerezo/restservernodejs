@@ -12,16 +12,17 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria', async (req, res) => {
+productoRoutes.get('/productosLista', async (req, res) => {
 
-    //let  termino = req.params.termino
-    await Producto.find({})
+    let  termino = req.params.termino
+    await Producto.find()
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
     if(!posts){
         return res.json({
             ok:false,
+            mensaje:'todo mal',
             posts:[] 
         })
     }  
@@ -34,7 +35,7 @@ productoRoutes.get('/productosCategoria', async (req, res) => {
            
        };
 
-       Producto.count({}, (err, suma)=>{
+       Producto.count({post:termino}, (err, suma)=>{
 
            res.json({
                ok: true,
@@ -90,10 +91,10 @@ productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
 //******************************************************************************//
 
 
-productoRoutes.get('/', (req:any, res:Response) => {
+productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 
     
-    Producto.find()
+    Producto.findById(req.params.id)
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
@@ -101,7 +102,7 @@ productoRoutes.get('/', (req:any, res:Response) => {
        if(!posts){
            return res.status(400).json({
                ok:false,
-               mensaje: `No existe un post con ese Id actualizar`,
+               mensaje: `No existe un post con ese Id ${req.params.id}`,
 
                
            })
@@ -132,7 +133,7 @@ productoRoutes.get('/', (req:any, res:Response) => {
 //******************************************************************************//
 //actualizar producto
 //******************************************************************************//
-productoRoutes.put('/:id',(req:any,res:Response)=>{
+productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
     const body = req.body; 
