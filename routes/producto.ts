@@ -12,215 +12,234 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
+productoRoutes.get('/', async (req: any, res: Response) => {
 
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
+
+    const posts = await Producto.find()
+                            
+                            .populate('usuario', '-password')
+                            .exec();
+
+
+    res.json({
+        ok: true,
+        pagina,
+        posts
+    });
+
+
+});
 
 
 //******************************************************************************//
 
 //crear un producto
-////******************************************************************************//
+//******************************************************************************//
 
-//productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
+productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
 
-//    const body = req.body;
-//    body.usuario = req.usuario._id;
+    const body = req.body;
+    body.usuario = req.usuario._id;
 
-//    
-//    const imagenes = fileSystem.imagenesDeTempHaciaPost( req.usuario._id );
-//    body.imgs = imagenes;
-//
+    
+    const imagenes = fileSystem.imagenesDeTempHaciaPost( req.usuario._id );
+    body.imgs = imagenes;
 
-//    Producto.create( body ).then( async postDB => {
 
-//        await postDB.populate('usuario', '-password')
-//        .populate('post'    )
-//        .execPopulate();
+    Producto.create( body ).then( async postDB => {
 
-//        res.json({
-//            ok: true,
-//            post: postDB
-//        });
+        await postDB.populate('usuario', '-password')
+        .populate('post'    )
+        .execPopulate();
 
-//    }).catch( err => {
-//        res.json(err)
-//    });
+        res.json({
+            ok: true,
+            post: postDB
+        });
 
-//});
-////******************************************************************************//
-//
-//
+    }).catch( err => {
+        res.json(err)
+    });
 
-////******************************************************************************//
+});
+//******************************************************************************//
 
-////actualizar producto
 
-////******************************************************************************//
-//
 
-//productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
+//******************************************************************************//
 
-//    
-//    Producto.findById(req.params.id)
-//   .populate('usuario', '-password')
-//   .exec((err,posts)=>{
+//actualizar producto
 
-//     
-//       if(!posts){
-//           return res.status(400).json({
-//               ok:false,
-//               mensaje: `No existe un post con ese Id ${req.params.id}`,
+//******************************************************************************//
 
-//               
-//           })
-//       }
-//       if(err){
-//        return res.status(500).json({
-//            ok:false,
-//            err
-//            
-//        })
-//    }
-//       
-//       res.json({
-//           ok: true,
-//          post: posts
-//       });
-//   
-//   });
-//});
-//
 
-////******************************************************************************//
-//
-//
-//
-//
+productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 
-////******************************************************************************//
-////actualizar producto
-////******************************************************************************//
-//productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
+    
+    Producto.findById(req.params.id)
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
 
-//    const id = req.params.id;
-//    const body = req.body; 
+     
+       if(!posts){
+           return res.status(400).json({
+               ok:false,
+               mensaje: `No existe un post con ese Id ${req.params.id}`,
 
-//    Producto.findById(id, (err, pDB) =>{
-//      
+               
+           })
+       }
+       if(err){
+        return res.status(500).json({
+            ok:false,
+            err
+            
+        })
+    }
+       
+       res.json({
+           ok: true,
+          post: posts
+       });
+   
+   });
+});
 
-//        
-//        if ( !pDB ) {
-//            return res.json({
-//                ok: false,
-//                mensaje: 'No existe un post  con ese ID'
-//            });
-//        }   
-//           if ( err ) {return res.status(500).json({
-//            ok:false,
-//            err
-//        })
-//    }
 
-//         pDB.nombre = body.nombre ||req.params.nombre;
-//         pDB.precio = body.precio ||req.params.precio;
-//         pDB.decripcion = body.decripcion || req.params.decripcion;
-//         
+//******************************************************************************//
 
-//         pDB.save((err,pGuardado)=>{
-//
 
-//            if ( err ) {res.status(500).json({
-//                ok:false,
-//                err
-//            })
-//        }
 
-//            res.json({
-//                ok:true,
-//                producto: pGuardado
-//            });
-//         });
 
-//    });
 
-//});
-//
+//******************************************************************************//
+//actualizar producto
+//******************************************************************************//
+productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
 
-////******************************************************************************//
-//
-//
+    const id = req.params.id;
+    const body = req.body; 
 
-////******************************************************************************//
-////busquedas por terminos
-////******************************************************************************//
+    Producto.findById(id, (err, pDB) =>{
+      
 
-//productoRoutes.get('/buscarT/:termino', verificaToken, (req, res) => {
+        
+        if ( !pDB ) {
+            return res.json({
+                ok: false,
+                mensaje: 'No existe un post  con ese ID'
+            });
+        }   
+           if ( err ) {return res.status(500).json({
+            ok:false,
+            err
+        })
+    }
 
-//    let  termino = req.params.termino;
-//    const regex = new RegExp(termino,'i')
-//    Producto.find({nombre: regex})
-//   .populate('usuario', '-password')
-//   .exec((err,posts)=>{
+         pDB.nombre = body.nombre ||req.params.nombre;
+         pDB.precio = body.precio ||req.params.precio;
+         pDB.decripcion = body.decripcion || req.params.decripcion;
+         
 
-//       if(err){
-//           return res.json({
-//            posts:[]
-//           })
-//               
-//           
-//       };
-//      
-//       res.json({
-//           ok: true,
-//          post: posts
-//       });
-//   
-//   });
-//});
-////******************************************************************************//
-//
+         pDB.save((err,pGuardado)=>{
 
-////******************************************************************************//
-////eliminar poroducto
-////******************************************************************************//
 
-//productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
-//    const id = req.params.id;
+            if ( err ) {res.status(500).json({
+                ok:false,
+                err
+            })
+        }
 
-//    
-//    Producto.findByIdAndRemove(id,(err, poDB)=>{
+            res.json({
+                ok:true,
+                producto: pGuardado
+            });
+         });
 
-//        if(!poDB){
-//            return res.json({
-//                ok:false,
-//                mensaje:'El Id no existe'
-//            })
-//        }
-//        if(err){
-//            throw err
-//        }
-//       res.json({
-//           ok:true,
-//           mensaje:'El post fue eliminado'
-//       })
-//    });
-//})
+    });
 
-////******************************************************************************//
-//
+});
 
-////******************************************************************************//
 
-//productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
+//******************************************************************************//
 
-//    const post = req.producto;
 
-//    res.json({
-//        ok: true,
-//        post
-//    });
 
-//});
-////******************************************************************************//
-//
+//******************************************************************************//
+//busquedas por terminos
+//******************************************************************************//
+
+productoRoutes.get('/buscarT/:termino', verificaToken, (req, res) => {
+
+    let  termino = req.params.termino;
+    const regex = new RegExp(termino,'i')
+    Producto.find({nombre: regex})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+       if(err){
+           return res.json({
+            posts:[]
+           })
+               
+           
+       };
+      
+       res.json({
+           ok: true,
+          post: posts
+       });
+   
+   });
+});
+//******************************************************************************//
+
+
+//******************************************************************************//
+//eliminar poroducto
+//******************************************************************************//
+
+productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
+    const id = req.params.id;
+
+    
+    Producto.findByIdAndRemove(id,(err, poDB)=>{
+
+        if(!poDB){
+            return res.json({
+                ok:false,
+                mensaje:'El Id no existe'
+            })
+        }
+        if(err){
+            throw err
+        }
+       res.json({
+           ok:true,
+           mensaje:'El post fue eliminado'
+       })
+    });
+})
+
+//******************************************************************************//
+
+
+//******************************************************************************//
+
+productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
+
+    const post = req.producto;
+
+    res.json({
+        ok: true,
+        post
+    });
+
+});
+//******************************************************************************//
+
 
 export default productoRoutes;

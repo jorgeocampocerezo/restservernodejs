@@ -17,33 +17,20 @@ const producto_model_1 = require("../models/producto.model");
 const file_system_1 = __importDefault(require("../classes/file-system"));
 const productoRoutes = express_1.Router();
 const fileSystem = new file_system_1.default();
-//listar post por categoria
-productoRoutes.get('/productosCategoria/:termino', autenticacion_1.verificaToken, (req, res) => {
-    let termino = req.params.termino;
-    producto_model_1.Producto.find({ post: termino })
+//listar todos  los productos
+productoRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
+    const posts = yield producto_model_1.Producto.find()
         .populate('usuario', '-password')
-        .exec((err, posts) => {
-        if (!posts) {
-            return res.json({
-                ok: false,
-                posts: []
-            });
-        }
-        if (err) {
-            return res.json({
-                err
-            });
-        }
-        ;
-        producto_model_1.Producto.count({ post: termino }, (err, suma) => {
-            res.json({
-                ok: true,
-                post: posts,
-                suma
-            });
-        });
+        .exec();
+    res.json({
+        ok: true,
+        pagina,
+        posts
     });
-});
+}));
 //******************************************************************************//
 //crear un producto
 //******************************************************************************//
@@ -174,7 +161,7 @@ productoRoutes.delete('/borrar/:id', autenticacion_1.verificaToken, (req, res) =
 //******************************************************************************//
 //******************************************************************************//
 productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
-    const post = req.post;
+    const post = req.producto;
     res.json({
         ok: true,
         post
