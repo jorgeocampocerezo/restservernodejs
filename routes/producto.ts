@@ -10,12 +10,12 @@ import FileSystem from '../classes/file-system';
 const productoRoutes =  Router();
 const fileSystem = new FileSystem();
 
-//listar productos por categoria
+//listar todos  los productos
 
-productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
+productoRoutes.get('/', async (req, res) => {
 
-    let  termino = req.params.termino
-    await Producto.find({post: termino})
+    //let  termino = req.params.termino
+    await Producto.find()
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
@@ -34,14 +34,14 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
            
        };
 
-       Producto.count({post:termino}, (err, suma)=>{
-
-           res.json({
-               ok: true,
-              post: posts,
-              suma
-           });
-       })
+     //  Producto.count({post:termino}, (err, suma)=>{
+//
+     //      res.json({
+     //          ok: true,
+     //         post: posts,
+     //         suma
+     //      });
+     //  })
       
    
    });
