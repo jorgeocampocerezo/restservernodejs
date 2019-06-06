@@ -12,26 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
-productoRoutes.get('/sobre/',  (req: any, res: Response) => {
 
-    let pagina = Number(req.query.pagina) || 1;
-    let skip = pagina - 1;
-    skip = skip * 10;
-
-    const posts =  Producto.find()
-                            
-                            .populate('usuario', '-password')
-                            .exec();
-
-
-    res.json({
-        ok: true,
-        pagina,
-        posts
-    });
-
-
-});
 
 
 //******************************************************************************//
