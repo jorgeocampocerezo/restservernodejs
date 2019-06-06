@@ -12,9 +12,9 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria',[verificaToken], async (req:any, res:Response) => {
+productoRoutes.get('/productosCategoria',[verificaToken],  (req:any, res:Response) => {
 
-    await Producto.find()
+     Producto.find()
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
