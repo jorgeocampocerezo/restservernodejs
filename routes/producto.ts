@@ -12,13 +12,13 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
-productoRoutes.get('/sobre/', async (req: any, res: Response) => {
+productoRoutes.get('/sobre/',  (req: any, res: Response) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
     skip = skip * 10;
 
-    const posts = await Producto.find()
+    const posts =  Producto.find()
                             
                             .populate('usuario', '-password')
                             .exec();
