@@ -90,7 +90,7 @@ productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
 //******************************************************************************//
 
 
-productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
+productoRoutes.get('/:id', (req:any, res:Response) => {
 
     
     Producto.findById(req.params.id)
