@@ -12,7 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar todos  los productos
 
-productoRoutes.put('/', async (req: any, res: Response) => {
+productoRoutes.get('/', async (req: any, res: Response) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
