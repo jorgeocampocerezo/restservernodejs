@@ -10,27 +10,41 @@ import FileSystem from '../classes/file-system';
 const productoRoutes =  Router();
 const fileSystem = new FileSystem();
 
-//listar todos  los productos
+//listar productos por categoria
 
-productoRoutes.get('/', async (req: any, res: Response) => {
+productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 
-    let pagina = Number(req.query.pagina) || 1;
-    let skip = pagina - 1;
-    skip = skip * 10;
+    let  termino = req.params.termino
+    await Producto.find({post: termino})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
 
-    const posts = await Producto.find()
-                            
-                            .populate('usuario', '-password')
-                            .exec();
+    if(!posts){
+        return res.json({
+            ok:false,
+            posts:[] 
+        })
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
 
+       Producto.count({post:termino}, (err, suma)=>{
 
-    res.json({
-        ok: true,
-        pagina,
-        posts
-    });
-
-
+           res.json({
+               ok: true,
+              post: posts,
+              suma
+           });
+       })
+      
+   
+   });
 });
 
 
@@ -231,7 +245,7 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
 
 productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
-    const post = req.producto;
+    const post = req.post;
 
     res.json({
         ok: true,
