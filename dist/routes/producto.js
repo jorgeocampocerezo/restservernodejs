@@ -181,4 +181,30 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
     });
 });
 //******************************************************************************//
+//***************************************************************** */
+//mostrar producto por id
+//*************************************************************** */
+productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
+    producto_model_1.Producto.findById(req.params.id)
+        .populate('usuario', '-password')
+        .populate('post')
+        .exec((err, producto) => {
+        if (!producto) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: `No existe un post con ese Id ${req.params.id}`,
+            });
+        }
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
+        res.json({
+            ok: true,
+            producto
+        });
+    });
+});
 exports.default = productoRoutes;

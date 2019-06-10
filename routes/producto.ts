@@ -255,5 +255,47 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 });
 //******************************************************************************//
 
+//***************************************************************** */
+//mostrar producto por id
+//*************************************************************** */
+
+productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
+
+    
+    Producto.findById(req.params.id)
+   .populate('usuario', '-password')
+   .populate('post')
+   .exec((err,producto)=>{
+
+     
+       if(!producto){
+           return res.status(400).json({
+               ok:false,
+               mensaje: `No existe un post con ese Id ${req.params.id}`,
+
+               
+           })
+       }
+       if(err){
+        return res.status(500).json({
+            ok:false,
+            err
+            
+        })
+    }
+       
+       res.json({
+           ok: true,
+           producto
+       });
+   
+   });
+});
+
+
+
+
+
+
 
 export default productoRoutes;
