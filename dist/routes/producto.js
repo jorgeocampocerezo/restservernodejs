@@ -22,11 +22,11 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
     let termino = req.params.termino;
     yield producto_model_1.Producto.find({ post: termino })
         .populate('usuario', '-password')
-        .exec((err, posts) => {
-        if (!posts) {
+        .exec((err, productos) => {
+        if (!productos) {
             return res.json({
                 ok: false,
-                posts: []
+                productos: []
             });
         }
         if (err) {
@@ -38,7 +38,7 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
         producto_model_1.Producto.count({ post: termino }, (err, suma) => {
             res.json({
                 ok: true,
-                post: posts,
+                productos: productos,
                 suma
             });
         });

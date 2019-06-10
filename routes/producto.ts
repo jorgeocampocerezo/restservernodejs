@@ -17,12 +17,12 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
     let  termino = req.params.termino
     await Producto.find({post: termino})
    .populate('usuario', '-password')
-   .exec((err,posts)=>{
+   .exec((err,productos)=>{
 
-    if(!posts){
+    if(!productos){
         return res.json({
             ok:false,
-            posts:[] 
+            productos:[] 
         })
     }  
     
@@ -38,7 +38,7 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 
            res.json({
                ok: true,
-              post: posts,
+               productos: productos,
               suma
            });
        })
