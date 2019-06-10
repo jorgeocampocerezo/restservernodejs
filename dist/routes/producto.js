@@ -174,10 +174,10 @@ productoRoutes.delete('/borrar/:id', autenticacion_1.verificaToken, (req, res) =
 //******************************************************************************//
 //******************************************************************************//
 productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
-    const producto = req.post;
+    const post = req.post;
     res.json({
         ok: true,
-        producto
+        post
     });
 });
 //******************************************************************************//
