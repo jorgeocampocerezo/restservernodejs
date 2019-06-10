@@ -245,11 +245,11 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
 
 productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
-    const post = req.post;
+    const producto = req.post;
 
     res.json({
         ok: true,
-        post
+        producto
     });
 
 });
