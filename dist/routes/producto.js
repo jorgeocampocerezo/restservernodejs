@@ -187,7 +187,6 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 productoRoutes.get('/buscar/:id', (req, res) => {
     producto_model_1.Producto.findById(req.params.id)
         .populate('usuario', '-password')
-        .populate('post')
         .exec((err, producto) => {
         if (!producto) {
             return res.status(400).json({
@@ -203,7 +202,7 @@ productoRoutes.get('/buscar/:id', (req, res) => {
         }
         res.json({
             ok: true,
-            producto
+            producto: producto
         });
     });
 });

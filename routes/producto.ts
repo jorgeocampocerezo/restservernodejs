@@ -264,7 +264,6 @@ productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
     
     Producto.findById(req.params.id)
    .populate('usuario', '-password')
-   .populate('post')
    .exec((err,producto)=>{
 
      
@@ -286,7 +285,7 @@ productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
        
        res.json({
            ok: true,
-           producto
+           producto:producto
        });
    
    });
