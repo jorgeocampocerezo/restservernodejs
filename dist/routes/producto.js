@@ -184,26 +184,30 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 //***************************************************************** */
 //mostrar producto por id
 //*************************************************************** */
-productoRoutes.get('/buscar/:id', (req, res) => {
-    producto_model_1.Producto.findById(req.params.id)
+productoRoutes.get('/buscar/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let termino = req.params.id;
+    yield producto_model_1.Producto.find({ _id: termino })
         .populate('usuario', '-password')
-        .exec((err, producto) => {
-        if (!producto) {
-            return res.status(400).json({
+        .exec((err, productos) => {
+        if (!productos) {
+            return res.json({
                 ok: false,
-                mensaje: `No existe un post con ese Id ${req.params.id}`,
+                productos: []
             });
         }
         if (err) {
-            return res.status(500).json({
-                ok: false,
+            return res.json({
                 err
             });
         }
-        res.json({
-            ok: true,
-            producto: producto
+        ;
+        producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                productos: productos,
+                suma
+            });
         });
     });
-});
+}));
 exports.default = productoRoutes;

@@ -259,40 +259,40 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 //mostrar producto por id
 //*************************************************************** */
 
-productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
+productoRoutes.get('/buscar/:id', async(req:any, res:Response) => {
 
-    
-    Producto.findById(req.params.id)
+    let  termino = req.params.id
+    await Producto.find({_id: termino})
    .populate('usuario', '-password')
-   .exec((err,producto)=>{
+   .exec((err,productos)=>{
 
-     
-       if(!producto){
-           return res.status(400).json({
-               ok:false,
-               mensaje: `No existe un post con ese Id ${req.params.id}`,
-
-               
-           })
-       }
-       if(err){
-        return res.status(500).json({
+    if(!productos){
+        return res.json({
             ok:false,
-            err
-            
+            productos:[] 
         })
-    }
-       
-       res.json({
-           ok: true,
-           producto:producto
-       });
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
+
+       Producto.count({post:termino}, (err, suma)=>{
+
+           res.json({
+               ok: true,
+               productos: productos,
+              suma
+           });
+       })
+      
    
    });
 });
-
-
-
 
 
 
