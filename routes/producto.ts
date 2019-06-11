@@ -264,6 +264,7 @@ productoRoutes.get('/buscar/:id', async(req:any, res:Response) => {
     let  termino = req.params.id
     await Producto.find({_id: termino})
    .populate('usuario', '-password')
+   .populate('post')
    .exec((err,productos)=>{
 
     if(!productos){

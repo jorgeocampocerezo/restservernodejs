@@ -188,6 +188,7 @@ productoRoutes.get('/buscar/:id', (req, res) => __awaiter(this, void 0, void 0, 
     let termino = req.params.id;
     yield producto_model_1.Producto.find({ _id: termino })
         .populate('usuario', '-password')
+        .populate('post')
         .exec((err, productos) => {
         if (!productos) {
             return res.json({
