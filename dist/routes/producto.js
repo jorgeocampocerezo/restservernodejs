@@ -184,7 +184,7 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 //***************************************************************** */
 //mostrar producto por id
 //*************************************************************** */
-productoRoutes.get('/buscar/:id', [autenticacion_1.verificaToken], (req, res) => {
+productoRoutes.get('/buscar/:id', (req, res) => {
     producto_model_1.Producto.findById(req.params.id)
         .populate('usuario', '-password')
         .populate('post')

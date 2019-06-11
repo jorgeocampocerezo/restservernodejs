@@ -259,7 +259,7 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 //mostrar producto por id
 //*************************************************************** */
 
-productoRoutes.get('/buscar/:id', [verificaToken], (req:any, res:Response) => {
+productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
 
     
     Producto.findById(req.params.id)
