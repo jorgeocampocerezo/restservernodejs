@@ -25,21 +25,19 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
     .skip( skip )
     .limit(10)
    .populate('usuario', '-password')
-   .exec()
+   .exec();
 
     
 
-       Producto.count({post:termino}, (err, suma)=>{
-
+      
            res.json({
                ok: true,
-               productos,
-              suma
+               productos
            });
        })
       
    
-   });
+   
 
 
 

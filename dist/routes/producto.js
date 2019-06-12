@@ -29,12 +29,9 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
         .limit(10)
         .populate('usuario', '-password')
         .exec();
-    producto_model_1.Producto.count({ post: termino }, (err, suma) => {
-        res.json({
-            ok: true,
-            productos,
-            suma
-        });
+    res.json({
+        ok: true,
+        productos
     });
 }));
 //******************************************************************************//
