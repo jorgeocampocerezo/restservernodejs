@@ -317,8 +317,7 @@ postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
 postRoutes.get('/postCat/:termino', (req, res) => {
 
     let  termino = req.params.termino;
-    const regex = new RegExp(termino,'i')
-    Post.find({mensaje: regex})
+    Post.find({mensaje: termino})
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
