@@ -229,24 +229,20 @@ postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req
     });
 });
 //busquedas por terminos
-postRoutes.get('/postCat/:termino', (req, res) => {
+postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
     let termino = req.params.termino;
-    post_model_1.Post.find(termino)
+    const regex = new RegExp(termino, 'i');
+    const post = yield post_model_1.Post.find({ categoria: regex })
         .populate('usuario', '-password')
-        .exec((err, posts) => {
-        if (err) {
-            return res.json({
-                ok: false,
-                posts: []
-            });
-        }
-        ;
-        res.json({
-            ok: true,
-            post: posts
-        });
+        .exec();
+    res.json({
+        ok: true,
+        post
     });
-});
+}));
 //eliminar post 
 postRoutes.delete('borrar/:id', autenticacion_1.verificaToken, (req, res) => {
     const id = req.params.id;

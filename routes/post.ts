@@ -314,30 +314,26 @@ postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
 
 //busquedas por terminos
 
-postRoutes.get('/postCat/:termino', (req, res) => {
+postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
 
+    
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
+    
     let  termino = req.params.termino;
-    Post.find(termino)
+    const regex = new RegExp(termino,'i')
+     const post = await Post.find({categoria: regex})
    .populate('usuario', '-password')
-   .exec((err,posts)=>{
+   .exec()
 
-       if(err){
-           return res.json({
-               ok:false,
-            posts:[]
-           })
-               
-           
-       };
-      
+       
        res.json({
            ok: true,
-          post: posts
+          post
        });
    
    });
-});
-
 
 
 //eliminar post 
