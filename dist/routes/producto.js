@@ -53,7 +53,7 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
 //******************************************************************************//
 //crear un producto
 //******************************************************************************//
-productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => {
+productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
     const body = req.body;
     body.usuario = req.usuario._id;
     const imagenes = fileSystem.imagenesDeTempHaciaPost(req.usuario._id);
@@ -69,7 +69,7 @@ productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => {
     })).catch(err => {
         res.json(err);
     });
-});
+}));
 //******************************************************************************//
 //******************************************************************************//
 //actualizar producto

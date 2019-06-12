@@ -61,7 +61,7 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 //crear un producto
 //******************************************************************************//
 
-productoRoutes.post('/', [ verificaToken ], (req: any, res: Response) => {
+productoRoutes.post('/', [ verificaToken ], async (req: any, res: Response) => {
 
     const body = req.body;
     body.usuario = req.usuario._id;
