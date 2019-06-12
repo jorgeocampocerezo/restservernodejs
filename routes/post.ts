@@ -314,7 +314,7 @@ postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
 
 //busquedas por terminos
 
-postRoutes.get('/:termino', verificaToken, (req, res) => {
+postRoutes.get('/postCat/:termino', verificaToken, (req, res) => {
 
     let  termino = req.params.termino;
     const regex = new RegExp(termino,'i')
