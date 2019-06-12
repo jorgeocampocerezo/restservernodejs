@@ -56,7 +56,6 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
 productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
     const body = req.body;
     body.usuario = req.usuario._id;
-    body.post = req.post._id;
     const imagenes = fileSystem.imagenesDeTempHaciaPost(req.usuario._id);
     body.imgs = imagenes;
     producto_model_1.Producto.create(body).then((postDB) => __awaiter(this, void 0, void 0, function* () {
