@@ -229,7 +229,7 @@ postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req
     });
 });
 //busquedas por terminos
-postRoutes.get('/postCat/:termino', autenticacion_1.verificaToken, (req, res) => {
+postRoutes.get('/postCat/:termino', (req, res) => {
     let termino = req.params.termino;
     const regex = new RegExp(termino, 'i');
     post_model_1.Post.find({ mensaje: regex })
