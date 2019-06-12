@@ -65,7 +65,7 @@ productoRoutes.post('/', [ verificaToken ], async (req: any, res: Response) => {
 
     const body = req.body;
     body.usuario = req.usuario._id;
-
+    body.post = req.post._id;
     
     const imagenes = fileSystem.imagenesDeTempHaciaPost( req.usuario._id );
     body.imgs = imagenes;
