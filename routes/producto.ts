@@ -20,40 +20,27 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
     let skip = pagina - 1;
     skip = skip * 10;
 
-    await Producto.find({post: termino})
+    const productos = await Producto.find({post: termino})
     .sort({ _id: -1 })
     .skip( skip )
     .limit(10)
    .populate('usuario', '-password')
-   .exec((err,productos)=>{
+   .exec()
 
-    if(!productos){
-        return res.json({
-            ok:false,
-            productos:[] 
-        })
-    }  
     
-    if(err){
-           return res.json({
-            err
-           })
-               
-           
-       };
 
        Producto.count({post:termino}, (err, suma)=>{
 
            res.json({
                ok: true,
-               productos: productos,
+               productos,
               suma
            });
        })
       
    
    });
-});
+
 
 
 //******************************************************************************//
