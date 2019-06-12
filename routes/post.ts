@@ -323,6 +323,7 @@ postRoutes.get('/postCat/:termino', (req, res) => {
 
        if(err){
            return res.json({
+               ok:false,
             posts:[]
            })
                
