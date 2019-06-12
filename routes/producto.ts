@@ -15,15 +15,11 @@ const fileSystem = new FileSystem();
 productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 
     let  termino = req.params.termino
-    let pagina = Number(req.query.pagina) || 1;
-
-    let skip = pagina - 1;
-    skip = skip * 10;
+  
 
     const productos = await Producto.find({post: termino})
     .sort({ _id: -1 })
-    .skip( skip )
-    .limit(10)
+    
    .populate('usuario', '-password')
    .exec();
 
