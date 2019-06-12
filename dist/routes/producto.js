@@ -20,13 +20,22 @@ const fileSystem = new file_system_1.default();
 //listar productos por categoria
 productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let termino = req.params.termino;
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
     const productos = yield producto_model_1.Producto.find({ post: termino })
         .sort({ _id: -1 })
+        .skip(skip)
+        .limit(10)
         .populate('usuario', '-password')
         .exec();
-    res.json({
-        ok: true,
-        productos
+    producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+        res.json({
+            ok: true,
+            productos,
+            pagina,
+            suma
+        });
     });
 }));
 //******************************************************************************//
