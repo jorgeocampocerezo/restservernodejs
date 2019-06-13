@@ -228,19 +228,21 @@ postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req
         });
     });
 });
-//busquedas por terminos
+//busquedas por categoria
 postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
     skip = skip * 10;
     let termino = req.params.termino;
-    const regex = new RegExp(termino, 'i');
-    const post = yield post_model_1.Post.find({ categoria: regex })
+    const post = yield post_model_1.Post.find(termino)
         .populate('usuario', '-password')
+        .skip(skip)
+        .limit(10)
         .exec();
     res.json({
         ok: true,
-        post
+        post,
+        pagina,
     });
 }));
 //eliminar post 
