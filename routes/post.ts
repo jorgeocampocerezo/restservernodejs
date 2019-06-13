@@ -323,7 +323,7 @@ postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
     
     let  termino = req.params.termino;
     const regex = new RegExp(termino,'i')
-     const post = await Post.find({categoria: regex})
+     const posts = await Post.find({categoria: regex})
    .populate('usuario', '-password')
    .sort({ _id: -1 })
                             .skip( skip )
@@ -333,7 +333,7 @@ postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
        
        res.json({
            ok: true,
-          post,
+          posts,
           pagina,
        });
    

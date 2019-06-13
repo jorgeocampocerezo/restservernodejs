@@ -235,7 +235,7 @@ postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0
     skip = skip * 10;
     let termino = req.params.termino;
     const regex = new RegExp(termino, 'i');
-    const post = yield post_model_1.Post.find({ categoria: regex })
+    const posts = yield post_model_1.Post.find({ categoria: regex })
         .populate('usuario', '-password')
         .sort({ _id: -1 })
         .skip(skip)
@@ -243,7 +243,7 @@ postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0
         .exec();
     res.json({
         ok: true,
-        post,
+        posts,
         pagina,
     });
 }));
