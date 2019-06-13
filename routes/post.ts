@@ -312,7 +312,7 @@ postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
 
 
 
-//busquedas por categoria
+//busquedas por terminos
 
 postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
 
@@ -322,10 +322,12 @@ postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
     skip = skip * 10;
     
     let  termino = req.params.termino;
-     const post = await Post.find(termino)
+    const regex = new RegExp(termino,'i')
+     const post = await Post.find({categoria: regex})
    .populate('usuario', '-password')
-    .skip( skip )
-    .limit(10)
+   .sort({ _id: -1 })
+                            .skip( skip )
+                            .limit(10)
    .exec()
 
        
