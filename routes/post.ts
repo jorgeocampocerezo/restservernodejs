@@ -368,7 +368,7 @@ postRoutes.delete('borrar/:id',verificaToken,(req,res)=>{
 postRoutes.get('/sumaCat/:Categoria', async(req:any, res:Response) => {
 
 let  categoria = req.params.categoria
-const regex = new RegExp(categoria,'i')
+const regex = new RegExp(categoria)
 
     Post.find({categoria: regex})
    .populate('usuario', '-password')
