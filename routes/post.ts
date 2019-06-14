@@ -365,13 +365,13 @@ postRoutes.delete('borrar/:id',verificaToken,(req,res)=>{
 })
 
 ////**suma categorias */
-postRoutes.get('/sumaCat/:categoria', async(req:any, res:Response) => {
+postRoutes.get('/sumaCat/:categoria', (req:any, res:Response) => {
 
 let  categoria = req.params.categoria
 
    
 
-        await Post.count({categoria: categoria},(err, suma)=>{
+         Post.count({categoria: categoria},(err, suma)=>{
 
            res.json({
                ok: true,
