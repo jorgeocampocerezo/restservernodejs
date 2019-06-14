@@ -369,37 +369,20 @@ postRoutes.get('/sumaCat/:categoria', async(req:any, res:Response) => {
 
 let  categoria = req.params.categoria
 
-    Post.find({categoria: categoria})
-   .populate('usuario', '-password')
-   .exec((err,posts)=>{
-
-    if(!posts){
-        return res.json({
-            ok:false,
-            posts:[]
-        })
-    }  
-    
-    if(err){
-           return res.json({
-            err
-           })
-               
-           
-       };
+   
 
        Post.count({categoria: categoria},(err, suma)=>{
 
            res.json({
                ok: true,
-              post: posts,
+              
               suma
            });
     
        })
       
    });
-});
+
 
 
 postRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {

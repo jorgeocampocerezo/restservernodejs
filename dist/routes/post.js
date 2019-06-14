@@ -269,27 +269,10 @@ postRoutes.delete('borrar/:id', autenticacion_1.verificaToken, (req, res) => {
 ////**suma categorias */
 postRoutes.get('/sumaCat/:categoria', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let categoria = req.params.categoria;
-    post_model_1.Post.find({ categoria: categoria })
-        .populate('usuario', '-password')
-        .exec((err, posts) => {
-        if (!posts) {
-            return res.json({
-                ok: false,
-                posts: []
-            });
-        }
-        if (err) {
-            return res.json({
-                err
-            });
-        }
-        ;
-        post_model_1.Post.count({ categoria: categoria }, (err, suma) => {
-            res.json({
-                ok: true,
-                post: posts,
-                suma
-            });
+    post_model_1.Post.count({ categoria: categoria }, (err, suma) => {
+        res.json({
+            ok: true,
+            suma
         });
     });
 }));
