@@ -267,10 +267,9 @@ postRoutes.delete('borrar/:id', autenticacion_1.verificaToken, (req, res) => {
     });
 });
 ////**suma categorias */
-postRoutes.get('/sumaCat/:Categoria', (req, res) => __awaiter(this, void 0, void 0, function* () {
+postRoutes.get('/sumaCat/:categoria', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let categoria = req.params.categoria;
-    const regex = new RegExp(categoria);
-    post_model_1.Post.find({ categoria: regex })
+    post_model_1.Post.find({ categoria: categoria })
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
