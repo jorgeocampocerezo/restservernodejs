@@ -387,7 +387,7 @@ let  categoria = req.params.categoria
            
        };
 
-       Post.count({usuario: categoria},(err, suma)=>{
+       Post.count({categoria: categoria},(err, suma)=>{
 
            res.json({
                ok: true,

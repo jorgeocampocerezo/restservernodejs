@@ -284,7 +284,7 @@ postRoutes.get('/sumaCat/:Categoria', (req, res) => __awaiter(this, void 0, void
             });
         }
         ;
-        post_model_1.Post.count({ usuario: categoria }, (err, suma) => {
+        post_model_1.Post.count({ categoria: categoria }, (err, suma) => {
             res.json({
                 ok: true,
                 post: posts,
