@@ -367,8 +367,8 @@ postRoutes.delete('borrar/:id',verificaToken,(req,res)=>{
 ////**suma categorias */
 postRoutes.get('/sumaCat/:Categoria', async(req:any, res:Response) => {
 
-let  termino = req.params.termino
-    Post.find({categoria: termino})
+let  categoria = req.params.categoria
+    Post.find({categoria: categoria})
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
@@ -387,7 +387,7 @@ let  termino = req.params.termino
            
        };
 
-       Post.count({usuario: termino},(err, suma)=>{
+       Post.count({usuario: categoria},(err, suma)=>{
 
            res.json({
                ok: true,
