@@ -371,7 +371,7 @@ let  categoria = req.params.categoria
 
    
 
-       Post.count({categoria: categoria},(err, suma)=>{
+        await Post.count({categoria: categoria},(err, suma)=>{
 
            res.json({
                ok: true,
@@ -383,6 +383,8 @@ let  categoria = req.params.categoria
       
    });
 
+
+/////**////////////////////////////////// */
 
 
 postRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
