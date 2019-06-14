@@ -364,6 +364,42 @@ postRoutes.delete('borrar/:id',verificaToken,(req,res)=>{
     });
 })
 
+////**suma categorias */
+postRoutes.get('/sumaCat/:Categoria', async(req:any, res:Response) => {
+
+let  termino = req.params.termino
+    Post.find({categoria: termino})
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+    if(!posts){
+        return res.json({
+            ok:false,
+            posts:[]
+        })
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
+
+       Post.count({usuario: termino},(err, suma)=>{
+
+           res.json({
+               ok: true,
+              post: posts,
+              suma
+           });
+    
+       })
+      
+   });
+});
+
 
 postRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 

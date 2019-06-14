@@ -266,6 +266,33 @@ postRoutes.delete('borrar/:id', autenticacion_1.verificaToken, (req, res) => {
         });
     });
 });
+////**suma categorias */
+postRoutes.get('/sumaCat/:Categoria', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let termino = req.params.termino;
+    post_model_1.Post.find({ categoria: termino })
+        .populate('usuario', '-password')
+        .exec((err, posts) => {
+        if (!posts) {
+            return res.json({
+                ok: false,
+                posts: []
+            });
+        }
+        if (err) {
+            return res.json({
+                err
+            });
+        }
+        ;
+        post_model_1.Post.count({ usuario: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                post: posts,
+                suma
+            });
+        });
+    });
+}));
 postRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
     const post = req.post;
     res.json({
