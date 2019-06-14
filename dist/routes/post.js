@@ -269,7 +269,8 @@ postRoutes.delete('borrar/:id', autenticacion_1.verificaToken, (req, res) => {
 ////**suma categorias */
 postRoutes.get('/sumaCat/:Categoria', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let categoria = req.params.categoria;
-    post_model_1.Post.find({ categoria: categoria })
+    const regex = new RegExp(categoria, 'i');
+    post_model_1.Post.find({ categoria: regex })
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
