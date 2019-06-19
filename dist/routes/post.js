@@ -201,7 +201,7 @@ postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) =
             });
         }
         ;
-        post_model_1.Post.count({}, (err, suma) => {
+        post_model_1.Post.count({ usuario: termino }, (err, suma) => {
             res.json({
                 ok: true,
                 pagina,
