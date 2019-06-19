@@ -244,7 +244,7 @@ postRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 //Busca los post del usuario
 
 
-postRoutes.get('/postUser/:termino', verificaToken, (req, res) => {
+postRoutes.get('/postUser/:termino', (req, res) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;

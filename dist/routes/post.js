@@ -178,7 +178,7 @@ postRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
     });
 });
 //Busca los post del usuario
-postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) => {
+postRoutes.get('/postUser/:termino', (req, res) => {
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
     skip = skip * 10;
