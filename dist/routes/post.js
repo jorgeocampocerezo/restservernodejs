@@ -201,10 +201,13 @@ postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) =
             });
         }
         ;
-        res.json({
-            ok: true,
-            pagina,
-            posts
+        post_model_1.Post.count({}, (err, suma) => {
+            res.json({
+                ok: true,
+                pagina,
+                posts,
+                suma
+            });
         });
     });
 });

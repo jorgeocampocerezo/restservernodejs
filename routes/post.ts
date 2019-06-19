@@ -272,10 +272,15 @@ postRoutes.get('/postUser/:termino', verificaToken, (req, res) => {
            
        };
       
-       res.json({
-        ok: true,
-        pagina,
-        posts
+       Post.count({} , (err,suma) =>{
+
+           res.json({
+            ok: true,
+            pagina,
+            posts,
+            suma
+       })
+        
 
        });
    
