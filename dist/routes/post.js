@@ -179,8 +179,14 @@ postRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
 });
 //Busca los post del usuario
 postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) => {
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
     let termino = req.params.termino;
     post_model_1.Post.find({ usuario: termino })
+        .sort({ _id: -1 })
+        .skip(skip)
+        .limit(10)
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
@@ -197,7 +203,8 @@ postRoutes.get('/postUser/:termino', autenticacion_1.verificaToken, (req, res) =
         ;
         res.json({
             ok: true,
-            post: posts
+            pagina,
+            posts
         });
     });
 });

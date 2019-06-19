@@ -246,8 +246,14 @@ postRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 
 postRoutes.get('/postUser/:termino', verificaToken, (req, res) => {
 
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
     let  termino = req.params.termino
     Post.find({usuario: termino})
+    .sort({ _id: -1 })
+    .skip( skip )
+    .limit(10)
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
@@ -267,8 +273,10 @@ postRoutes.get('/postUser/:termino', verificaToken, (req, res) => {
        };
       
        res.json({
-           ok: true,
-          post: posts
+        ok: true,
+        pagina,
+        posts
+
        });
    
    });
