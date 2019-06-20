@@ -52,7 +52,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => __awaiter(this, v
         .limit(10)
         .populate('usuario', '-password')
         .exec();
-    producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+    producto_model_1.Producto.count({ usuario: termino }, (err, suma) => {
         res.json({
             ok: true,
             productos,

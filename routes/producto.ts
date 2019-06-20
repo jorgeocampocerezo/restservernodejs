@@ -63,7 +63,7 @@ productoRoutes.get('/productosUsuario/:termino', async (req, res) => {
 
     
 
-       Producto.count({post:termino}, (err, suma)=>{
+       Producto.count({usuario:termino}, (err, suma)=>{
 
            res.json({
                ok: true,
