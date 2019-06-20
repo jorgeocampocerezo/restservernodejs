@@ -39,6 +39,29 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
     });
 }));
 //******************************************************************************//
+//productos del usuario 
+//******************************************************************************//
+productoRoutes.get('/productosUsuario/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let termino = req.params.termino;
+    let pagina = Number(req.query.pagina) || 1;
+    let skip = pagina - 1;
+    skip = skip * 10;
+    const productos = yield producto_model_1.Producto.find({ usuario: termino })
+        .sort({ _id: -1 })
+        .skip(skip)
+        .limit(10)
+        .populate('usuario', '-password')
+        .exec();
+    producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+        res.json({
+            ok: true,
+            productos,
+            pagina,
+            suma
+        });
+    });
+}));
+//******************************************************************************//
 //crear un producto
 //******************************************************************************//
 productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
