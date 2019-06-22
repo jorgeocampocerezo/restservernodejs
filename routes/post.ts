@@ -355,7 +355,7 @@ postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
 
 //eliminar post 
 
-postRoutes.delete('borrar/:id',verificaToken,(req,res)=>{
+postRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
     const id = req.params.id;
 
     
