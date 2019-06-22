@@ -112,7 +112,7 @@ postRoutes.get('/imagen/:userid/:img', (req, res) => {
     res.sendFile(pathFoto);
 });
 ///actualizar post
-postRoutes.put('/:id', [autenticacion_1.verificaToken], (req, res) => {
+postRoutes.put('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
     const id = req.params.id;
     const body = req.body;
     post_model_1.Post.findById(id, (err, pDB) => {

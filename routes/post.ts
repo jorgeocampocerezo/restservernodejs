@@ -151,7 +151,7 @@ postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 });
 
 ///actualizar post
-postRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
+postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
     const body = req.body; 
