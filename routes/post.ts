@@ -208,7 +208,7 @@ postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
 //mostrar post por id 
 
-postRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
+postRoutes.get('/:id', (req:any, res:Response) => {
 
     
     Post.findById(req.params.id)

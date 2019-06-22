@@ -155,7 +155,7 @@ postRoutes.put('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) =>
     });
 });
 //mostrar post por id 
-postRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
+postRoutes.get('/:id', (req, res) => {
     post_model_1.Post.findById(req.params.id)
         .populate('usuario', '-password')
         .exec((err, posts) => {
