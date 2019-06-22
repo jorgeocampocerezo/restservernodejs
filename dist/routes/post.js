@@ -258,7 +258,7 @@ postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0
     });
 }));
 //eliminar post 
-postRoutes.delete('/borrar/:id', autenticacion_1.verificaToken, (req, res) => {
+postRoutes.delete('/borrar/:id', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
     const id = req.params.id;
     post_model_1.Post.findByIdAndRemove(id, (err, poDB) => {
         if (!poDB) {
@@ -275,7 +275,7 @@ postRoutes.delete('/borrar/:id', autenticacion_1.verificaToken, (req, res) => {
             mensaje: 'El post fue eliminado'
         });
     });
-});
+}));
 ////**suma categorias */
 postRoutes.get('/sumaCat/:categoria', (req, res) => {
     let categoria = req.params.categoria;
