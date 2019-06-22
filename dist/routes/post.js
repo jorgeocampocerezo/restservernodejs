@@ -260,7 +260,7 @@ postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0
 //eliminar post 
 postRoutes.delete('/borrar/:id', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
     const id = req.params.id;
-    post_model_1.Post.findByIdAndRemove(id, (err, poDB) => {
+    post_model_1.Post.findByIdAndRemove(yield id, (err, poDB) => {
         if (!poDB) {
             return res.json({
                 ok: false,

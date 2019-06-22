@@ -359,7 +359,7 @@ postRoutes.delete('/borrar/:id',  [verificaToken],async (req:any,res: Response)=
     const id = req.params.id;
 
     
-     Post.findByIdAndRemove(id, (err, poDB)=>{
+     Post.findByIdAndRemove(await id, (err, poDB)=>{
 
         if(!poDB){
             return res.json({
