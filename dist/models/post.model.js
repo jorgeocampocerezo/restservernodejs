@@ -7,7 +7,6 @@ const postSchema = new mongoose_1.Schema({
     },
     titulo: {
         type: String,
-        required: [true, 'El titulo es nesesario']
     },
     imgs: [{
             type: String,

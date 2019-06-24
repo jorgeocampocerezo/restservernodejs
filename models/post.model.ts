@@ -8,7 +8,6 @@ const postSchema = new Schema({
     },
     titulo: {
         type: String,
-        required: [ true, 'El titulo es nesesario' ]
     },
     imgs: [{
         type: String,
