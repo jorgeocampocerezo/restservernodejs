@@ -151,7 +151,7 @@ postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 });
 
 ///actualizar post
-postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
+postRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
     const body = req.body; 
@@ -168,7 +168,7 @@ postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
             });
         }   
         
-
+ 
 
          pDB.gps = body.gps ||req.params.gps;
          pDB.titulo = body.titulo ||req.params.titulo;
