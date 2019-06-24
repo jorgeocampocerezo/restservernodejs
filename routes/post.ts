@@ -159,6 +159,7 @@ postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
     Post.findById(id, (err, pDB) =>{
       
 
+        if ( err ) throw err;
         
         if ( !pDB ) {
             return res.json({
@@ -166,11 +167,7 @@ postRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
                 mensaje: 'No existe un post  con ese ID'
             });
         }   
-           if ( err ) {return res.status(500).json({
-            ok:false,
-            err
-        })
-    }
+        
 
 
          pDB.gps = body.gps ||req.params.gps;

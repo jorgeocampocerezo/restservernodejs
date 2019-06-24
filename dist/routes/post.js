@@ -116,16 +116,12 @@ postRoutes.put('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) =>
     const id = req.params.id;
     const body = req.body;
     post_model_1.Post.findById(id, (err, pDB) => {
+        if (err)
+            throw err;
         if (!pDB) {
             return res.json({
                 ok: false,
                 mensaje: 'No existe un post  con ese ID'
-            });
-        }
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
             });
         }
         pDB.gps = body.gps || req.params.gps;
