@@ -96,7 +96,7 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
         email : req.body.email  || req.usuario.email,
-        avatar: req.body.avatar || req.usuario.avatar
+        avatar: req.body.avatar || req.usuario.avatar 
     }
 
     Usuario.findByIdAndUpdate( req.usuario._id, user, { new: true }, (err, userDB) => {
