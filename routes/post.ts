@@ -374,7 +374,7 @@ postRoutes.delete('/borrar/:id',   (req:any,res: Response)=>{
     });
 })
 
-////**suma categorias */
+////**suma categorias *//
 postRoutes.get('/sumaCat/:categoria', (req:any, res:Response) => {
 
 let  categoria = req.params.categoria
