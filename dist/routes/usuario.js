@@ -81,9 +81,9 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         }
         const tokenUser = token_1.default.getJwtToken({
             _id: userDB._id,
-            nombre: req.body.nombre || req.usuario.nombre,
-            email: req.body.email || req.usuario.email,
-            avatar: req.body.avatar || req.usuario.avatar
+            nombre: req.body.nombre,
+            email: req.body.email,
+            avatar: req.body.avatar
         });
         res.json({
             ok: true,
