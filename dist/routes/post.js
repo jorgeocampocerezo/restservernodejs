@@ -272,7 +272,7 @@ postRoutes.delete('/borrar/:id', (req, res) => {
         });
     });
 });
-////**suma categorias *///
+////**suma categorias *//
 postRoutes.get('/sumaCat/:categoria', (req, res) => {
     let categoria = req.params.categoria;
     post_model_1.Post.count({ categoria: categoria }, (err, suma) => {
