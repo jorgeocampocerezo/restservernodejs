@@ -234,7 +234,7 @@ postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req
         });
     });
 });
-//busquedas por terminos 1
+//busquedas por terminos 
 postRoutes.get('/postCat/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
