@@ -98,7 +98,7 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
     
 
-    Usuario.findById( req.usuario._id, { new: true }, (err, userDB) => {
+    Usuario.findByIdAndUpdate( req.usuario._id, { new: true }, (err, userDB) => {
 
         if ( err ) throw err;
 
