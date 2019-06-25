@@ -71,7 +71,7 @@ userRoutes.post('/create', (req, res) => {
 userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
-        email: req.body.email || req.usuario.email,
+        email: req.body.email,
         avatar: req.body.avatar || req.usuario.avatar
     };
     usuario_model_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }, (err, userDB) => {

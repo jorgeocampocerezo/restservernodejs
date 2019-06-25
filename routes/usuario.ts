@@ -95,7 +95,7 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
     const user = {
         nombre: req.body.nombre || req.usuario.nombre,
-        email : req.body.email  || req.usuario.email,
+        email : req.body.email ,
         avatar: req.body.avatar || req.usuario.avatar 
     }
 
