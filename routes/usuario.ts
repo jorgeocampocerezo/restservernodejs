@@ -93,13 +93,12 @@ userRoutes.post('/create', ( req: Request, res: Response ) => {
 // Actualizar usuario
 userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
 
-    const user = {
-        nombre: req.body.nombre || req.usuario.nombre,
-        email : req.body.email ,
-        avatar: req.body.avatar || req.usuario.avatar 
-    }
+    const body = req.body; 
+   
 
-    Usuario.findByIdAndUpdate( req.usuario._id, user, { new: true }, (err, userDB) => {
+    
+
+    Usuario.findById( req.usuario._id, { new: true }, (err, userDB) => {
 
         if ( err ) throw err;
 
@@ -112,9 +111,9 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
  
         const tokenUser = Token.getJwtToken({
             _id: userDB._id,
-            nombre: userDB.nombre,
-            email: userDB.email,
-            avatar: userDB.avatar
+            nombre: req.body.nombre || req.usuario.nombre,
+            email : req.body.email  || req.usuario.email,
+            avatar: req.body.avatar || req.usuario.avatar 
         });
 
         res.json({

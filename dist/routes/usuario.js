@@ -69,12 +69,8 @@ userRoutes.post('/create', (req, res) => {
 });
 // Actualizar usuario
 userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
-    const user = {
-        nombre: req.body.nombre || req.usuario.nombre,
-        email: req.body.email,
-        avatar: req.body.avatar || req.usuario.avatar
-    };
-    usuario_model_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }, (err, userDB) => {
+    const body = req.body;
+    usuario_model_1.Usuario.findById(req.usuario._id, { new: true }, (err, userDB) => {
         if (err)
             throw err;
         if (!userDB) {
@@ -85,9 +81,9 @@ userRoutes.post('/update', autenticacion_1.verificaToken, (req, res) => {
         }
         const tokenUser = token_1.default.getJwtToken({
             _id: userDB._id,
-            nombre: userDB.nombre,
-            email: userDB.email,
-            avatar: userDB.avatar
+            nombre: req.body.nombre || req.usuario.nombre,
+            email: req.body.email || req.usuario.email,
+            avatar: req.body.avatar || req.usuario.avatar
         });
         res.json({
             ok: true,
