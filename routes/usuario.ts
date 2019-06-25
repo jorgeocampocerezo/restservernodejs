@@ -108,8 +108,8 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
                 ok: false,
                 mensaje: 'No existe un usuario con ese ID'
             });
-        }
-
+        } 
+     
         const tokenUser = Token.getJwtToken({
             _id: userDB._id,
             nombre: userDB.nombre,
@@ -117,8 +117,8 @@ userRoutes.post('/update', verificaToken, (req: any, res: Response ) => {
             avatar: userDB.avatar
         });
 
-        res.json({
-            ok: true,
+        res.json({ 
+            ok: true, 
             token: tokenUser
         });
 

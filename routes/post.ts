@@ -322,7 +322,7 @@ postRoutes.get('/totalUsuarioPost/:termino', verificaToken, (req, res) => {
 
 
 
-//busquedas por terminos
+//busquedas por terminos 1
 
 postRoutes.get('/postCat/:termino', async(req:any, res:Response) => {
 
