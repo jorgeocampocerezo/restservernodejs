@@ -8,7 +8,6 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const usuarioSchema = new mongoose_1.Schema({
     nombre: {
         type: String,
-        required: [true, 'El nombre es necesario']
     },
     avatar: {
         type: String,
@@ -17,11 +16,9 @@ const usuarioSchema = new mongoose_1.Schema({
     email: {
         type: String,
         unique: true,
-        required: [true, 'El correo es necesario']
     },
     password: {
         type: String,
-        required: [true, 'La contraseña es necesaria']
     }
 });
 usuarioSchema.method('compararPassword', function (password = '') {
