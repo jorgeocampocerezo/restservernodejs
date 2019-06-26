@@ -46,7 +46,7 @@ productoRoutes.get('/productosCategoria/:termino', async (req, res) => {
 
 //productos del usuario 
 //******************************************************************************//
-productoRoutes.get('/productosUsuario/:termino', async (req, res) => {
+productoRoutes.get('/productosUsuario/:termino', (req, res) => {
 
     let  termino = req.params.termino
     let pagina = Number(req.query.pagina) || 1;
@@ -54,24 +54,40 @@ productoRoutes.get('/productosUsuario/:termino', async (req, res) => {
     let skip = pagina - 1;
     skip = skip * 10;
 
-    const productos = await Producto.find({usuario: termino})
+    Producto.find({usuario: termino})
     .sort({ _id: -1 })
     .skip( skip )
     .limit(10)
    .populate('usuario', '-password')
-   .exec()
+   .exec((err, productos) =>{
+    if(!productos){
+        return res.json({
+            ok:false,
+            posts:[]
+        })
+    }  
+    if(err){
+        return res.json({
+         err
+        })
+            
+        
+    };
+    
+    Producto.count({usuario:termino}, (err, suma)=>{
 
+        res.json({
+            ok: true,
+            productos,
+            pagina,
+           suma
+        });
+    })
+   })
+
+   
     
 
-       Producto.count({usuario:termino}, (err, suma)=>{
-
-           res.json({
-               ok: true,
-               productos,
-               pagina,
-              suma
-           });
-       })
       
    
    });
