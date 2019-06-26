@@ -179,7 +179,7 @@ productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 //******************************************************************************//
 //actualizar producto
 //******************************************************************************//
-productoRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
+productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
     const body = req.body; 

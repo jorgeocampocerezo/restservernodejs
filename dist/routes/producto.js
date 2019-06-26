@@ -124,7 +124,7 @@ productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
 //******************************************************************************//
 //actualizar producto
 //******************************************************************************//
-productoRoutes.put('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
+productoRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
     const id = req.params.id;
     const body = req.body;
     producto_model_1.Producto.findById(id, (err, pDB) => {
