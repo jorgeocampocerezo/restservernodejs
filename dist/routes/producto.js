@@ -218,11 +218,10 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 //***************************************************************** */
 //mostrar producto por id
 //*************************************************************** */
-productoRoutes.get('/buscar/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+productoRoutes.get('/buscar/:id', (req, res) => {
     let termino = req.params.id;
-    yield producto_model_1.Producto.find({ _id: termino })
+    producto_model_1.Producto.find({ _id: termino })
         .populate('usuario', '-password')
-        .populate('post')
         .exec((err, productos) => {
         if (!productos) {
             return res.json({
@@ -244,5 +243,5 @@ productoRoutes.get('/buscar/:id', (req, res) => __awaiter(this, void 0, void 0, 
             });
         });
     });
-}));
+});
 exports.default = productoRoutes;

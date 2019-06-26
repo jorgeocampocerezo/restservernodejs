@@ -311,12 +311,11 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 //mostrar producto por id
 //*************************************************************** */
 
-productoRoutes.get('/buscar/:id', async(req:any, res:Response) => {
+productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
 
     let  termino = req.params.id
-    await Producto.find({_id: termino})
+    Producto.find({_id: termino})
    .populate('usuario', '-password')
-   .populate('post')
    .exec((err,productos)=>{
 
     if(!productos){
