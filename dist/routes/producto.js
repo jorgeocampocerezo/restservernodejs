@@ -96,7 +96,7 @@ productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaite
 }));
 //******************************************************************************//
 //******************************************************************************//
-//actualizar producto
+//buscar  producto
 //******************************************************************************//
 productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
     producto_model_1.Producto.findById(req.params.id)
@@ -124,7 +124,7 @@ productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
 //******************************************************************************//
 //actualizar producto
 //******************************************************************************//
-productoRoutes.put('/:id', [autenticacion_1.verificaToken], (req, res) => {
+productoRoutes.put('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
     const id = req.params.id;
     const body = req.body;
     producto_model_1.Producto.findById(id, (err, pDB) => {
@@ -143,6 +143,10 @@ productoRoutes.put('/:id', [autenticacion_1.verificaToken], (req, res) => {
         pDB.nombre = body.nombre || req.params.nombre;
         pDB.precio = body.precio || req.params.precio;
         pDB.decripcion = body.decripcion || req.params.decripcion;
+        pDB.marca = body.marca || req.params.marca;
+        pDB.garantia = body.garantia || req.params.garantia;
+        pDB.referencia = body.referencia || req.params.referencia;
+        pDB.material = body.material || req.params.material;
         pDB.save((err, pGuardado) => {
             if (err) {
                 res.status(500).json({

@@ -132,7 +132,7 @@ productoRoutes.post('/', [ verificaToken ], async (req: any, res: Response) => {
 
 //******************************************************************************//
 
-//actualizar producto
+//buscar  producto
 
 //******************************************************************************//
 
@@ -179,7 +179,7 @@ productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 //******************************************************************************//
 //actualizar producto
 //******************************************************************************//
-productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
+productoRoutes.put('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
     const body = req.body; 
@@ -203,6 +203,11 @@ productoRoutes.put('/:id',[verificaToken],(req:any,res:Response)=>{
          pDB.nombre = body.nombre ||req.params.nombre;
          pDB.precio = body.precio ||req.params.precio;
          pDB.decripcion = body.decripcion || req.params.decripcion;
+         pDB.marca = body.marca || req.params.marca;
+         pDB.garantia = body.garantia || req.params.garantia;
+         pDB.referencia = body.referencia || req.params.referencia;
+         pDB.material = body.material || req.params.material;
+
          
 
          pDB.save((err,pGuardado)=>{
