@@ -239,7 +239,7 @@ productoRoutes.get('/buscar/:id', (req, res) => __awaiter(this, void 0, void 0, 
         producto_model_1.Producto.count({ post: termino }, (err, suma) => {
             res.json({
                 ok: true,
-                productos: productos,
+                producto: productos,
                 suma
             });
         });

@@ -338,7 +338,7 @@ productoRoutes.get('/buscar/:id', async(req:any, res:Response) => {
 
            res.json({
                ok: true,
-               productos: productos,
+               producto: productos,
               suma
            });
        })
