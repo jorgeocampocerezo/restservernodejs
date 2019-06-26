@@ -50,7 +50,6 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
         .sort({ _id: -1 })
         .skip(skip)
         .limit(10)
-        .populate('post')
         .populate('usuario', '-password')
         .exec((err, productos) => {
         if (!productos) {
