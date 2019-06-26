@@ -59,6 +59,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
     .skip( skip )
     .limit(10)
    .populate('usuario', '-password')
+   .populate('post')
    .exec((err, productos) =>{
     if(!productos){
         return res.json({
