@@ -241,13 +241,13 @@ postRoutes.get('/:id', (req:any, res:Response) => {
 //Busca los post del usuario
 
 
-postRoutes.get('/postUser/:termino', (req, res) => {
+postRoutes.get('/postUser/:termino', async(req, res) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
     skip = skip * 10;
     let  termino = req.params.termino
-    Post.find({usuario: termino})
+    await Post.find({usuario: termino})
     .sort({ _id: -1 })
     .skip( skip )
     .limit(10)

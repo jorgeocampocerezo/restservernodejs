@@ -174,12 +174,12 @@ postRoutes.get('/:id', (req, res) => {
     });
 });
 //Busca los post del usuario
-postRoutes.get('/postUser/:termino', (req, res) => {
+postRoutes.get('/postUser/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
     skip = skip * 10;
     let termino = req.params.termino;
-    post_model_1.Post.find({ usuario: termino })
+    yield post_model_1.Post.find({ usuario: termino })
         .sort({ _id: -1 })
         .skip(skip)
         .limit(10)
@@ -206,7 +206,7 @@ postRoutes.get('/postUser/:termino', (req, res) => {
             });
         });
     });
-});
+}));
 //suma los post del usuario
 postRoutes.get('/totalUsuarioPost/:termino', autenticacion_1.verificaToken, (req, res) => {
     let termino = req.params.termino;
