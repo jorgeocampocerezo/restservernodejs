@@ -100,6 +100,7 @@ productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaite
 //******************************************************************************//
 productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
     producto_model_1.Producto.findById(req.params.id)
+        .populate('post')
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
