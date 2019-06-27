@@ -314,8 +314,7 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
 productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
 
-    let  termino = req.params.id
-    Producto.find({_id: termino})
+    Producto.findById(req.params.id)
    .populate('usuario', '-password')
    .exec((err,productos)=>{
 
@@ -334,14 +333,12 @@ productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
            
        };
 
-       Producto.count({post:termino}, (err, suma)=>{
-
            res.json({
                ok: true,
                producto: productos,
-              suma
+              
            });
-       })
+    
       
    
    });

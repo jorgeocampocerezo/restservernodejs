@@ -220,8 +220,7 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 //mostrar producto por id
 //*************************************************************** */
 productoRoutes.get('/buscar/:id', (req, res) => {
-    let termino = req.params.id;
-    producto_model_1.Producto.find({ _id: termino })
+    producto_model_1.Producto.findById(req.params.id)
         .populate('usuario', '-password')
         .exec((err, productos) => {
         if (!productos) {
@@ -236,12 +235,9 @@ productoRoutes.get('/buscar/:id', (req, res) => {
             });
         }
         ;
-        producto_model_1.Producto.count({ post: termino }, (err, suma) => {
-            res.json({
-                ok: true,
-                producto: productos,
-                suma
-            });
+        res.json({
+            ok: true,
+            producto: productos,
         });
     });
 });
