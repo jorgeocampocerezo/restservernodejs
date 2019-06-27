@@ -186,6 +186,7 @@ productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
         if ( !pDB ) {
             return res.json({
                 ok: false,
+                
                 mensaje: 'No existe un post  con ese ID'
             });
         }   
@@ -197,7 +198,7 @@ productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
          pDB.nombre = body.nombre ||req.params.nombre;
          pDB.precio = body.precio ||req.params.precio;
-         pDB.decripcion = body.decripcion || req.params.decripcion;
+         pDB.descripcion = body.decripcion || req.params.decripcion;
          pDB.marca = body.marca || req.params.marca;
          pDB.garantia = body.garantia || req.params.garantia;
          pDB.referencia = body.referencia || req.params.referencia;

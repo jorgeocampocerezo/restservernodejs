@@ -50,7 +50,7 @@ interface IProducto extends Document {
     created: Date;
     nombre:string;
     precio:string;
-    decripcion:string;
+    descripcion:string;
     img:string;
     usuario:string;
     marca:string;
