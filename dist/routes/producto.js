@@ -128,13 +128,13 @@ productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
 productoRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
     const id = req.params.id;
     const producto = {
-        nombre: req.body.nombre || req.params.nombre,
-        precio: req.body.precio || req.params.precio,
-        decripcion: req.body.decripcion || req.params.decripcion,
-        marca: req.body.marca || req.params.marca,
-        garantia: req.body.garantia || req.params.garantia,
-        referencia: req.body.referencia || req.params.referencia,
-        material: req.body.material || req.params.material,
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+        decripcion: req.body.decripcion,
+        marca: req.body.marca,
+        garantia: req.body.garantia,
+        referencia: req.body.referencia,
+        material: req.body.material,
     };
     producto_model_1.Producto.findByIdAndUpdate(id, producto, { new: true }, (err, pDB) => {
         if (!pDB) {
