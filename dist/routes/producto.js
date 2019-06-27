@@ -44,6 +44,7 @@ productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this,
 productoRoutes.get('/productosUsuario/:termino', (req, res) => {
     let termino = req.params.termino;
     producto_model_1.Producto.find({ usuario: termino })
+        .populate('post')
         .populate('usuario', '-password')
         .exec((err, productos) => {
         if (!productos) {

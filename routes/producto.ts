@@ -52,7 +52,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
   
 
     Producto.find({usuario: termino})
-   
+   .populate('post')
    .populate('usuario', '-password')
    .exec((err, productos) =>{
     if(!productos){
