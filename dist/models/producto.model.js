@@ -7,16 +7,15 @@ const productoSchema = new mongoose_1.Schema({
     },
     nombre: {
         type: String,
-        required: true
     },
     precio: {
         type: Number
     },
     marca: {
-        type: Number
+        type: String
     },
     garantia: {
-        type: Number
+        type: String
     },
     referencia: {
         type: String

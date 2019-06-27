@@ -9,16 +9,15 @@ const productoSchema = new Schema({
     },
     nombre:{
         type:String,
-        required:true
     },
     precio:{
         type:Number
     },
     marca:{
-        type:Number
+        type:String
     },
     garantia:{
-        type:Number
+        type:String
     },
     referencia:{
         type:String
