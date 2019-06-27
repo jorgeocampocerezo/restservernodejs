@@ -183,9 +183,17 @@ productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
-    const body = req.body; 
+const producto = {
+    nombre:  req.body.nombre ||req.params.nombre,
+    precio:  req.body.precio ||req.params.precio,
+    decripcion:  req.body.decripcion || req.params.decripcion,
+    marca:  req.body.marca || req.params.marca,
+    garantia:  req.body.garantia || req.params.garantia,
+    referencia:  req.body.referencia || req.params.referencia,
+    material:  req.body.material || req.params.material,
 
-    Producto.findById(id, (err, pDB) =>{
+}
+    Producto.findByIdAndUpdate(id, producto, {new:true},(err, pDB) =>{
       
 
         
@@ -201,32 +209,15 @@ productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
         })
     }
 
-         pDB.nombre = body.nombre ||req.params.nombre;
-         pDB.precio = body.precio ||req.params.precio;
-         pDB.decripcion = body.decripcion || req.params.decripcion;
-         pDB.marca = body.marca || req.params.marca;
-         pDB.garantia = body.garantia || req.params.garantia;
-         pDB.referencia = body.referencia || req.params.referencia;
-         pDB.material = body.material || req.params.material;
-
-         
-
-         pDB.save((err,pGuardado)=>{
-
-
-            if ( err ) {res.status(500).json({
-                ok:false,
-                err
-            })
-        }
+    
 
             res.json({
                 ok:true,
-                producto: pGuardado
+                producto
             });
          });
 
-    });
+    
 
 });
 
