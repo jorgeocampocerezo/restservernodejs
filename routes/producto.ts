@@ -183,17 +183,9 @@ productoRoutes.get('/:id', [verificaToken], (req:any, res:Response) => {
 productoRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 
     const id = req.params.id;
-const producto = {
-    nombre:  req.body.nombre ,
-    precio:  req.body.precio ,
-    decripcion:  req.body.decripcion ,
-    marca:  req.body.marca ,
-    garantia:  req.body.garantia ,
-    referencia:  req.body.referencia ,
-    material:  req.body.material ,
+    const body = req.body; 
 
-}
-    Producto.findByIdAndUpdate(id, producto, {new:true},(err, pDB) =>{
+    Producto.findById(id, (err, pDB) =>{
       
 
         
@@ -209,15 +201,32 @@ const producto = {
         })
     }
 
-    
+         pDB.nombre = body.nombre ||req.params.nombre;
+         pDB.precio = body.precio ||req.params.precio;
+         pDB.decripcion = body.decripcion || req.params.decripcion;
+         pDB.marca = body.marca || req.params.marca;
+         pDB.garantia = body.garantia || req.params.garantia;
+         pDB.referencia = body.referencia || req.params.referencia;
+         pDB.material = body.material || req.params.material;
+
+         
+
+         pDB.save((err,pGuardado)=>{
+
+
+            if ( err ) {res.status(500).json({
+                ok:false,
+                err
+            })
+        }
 
             res.json({
                 ok:true,
-                producto
+                producto: pGuardado
             });
          });
 
-    
+    });
 
 });
 
@@ -305,7 +314,8 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 
 productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
 
-    Producto.findById(req.params.id)
+    let  termino = req.params.id
+    Producto.find({_id: termino})
    .populate('usuario', '-password')
    .exec((err,productos)=>{
 
@@ -324,12 +334,14 @@ productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
            
        };
 
+       Producto.count({post:termino}, (err, suma)=>{
+
            res.json({
                ok: true,
                producto: productos,
-              
+              suma
            });
-    
+       })
       
    
    });

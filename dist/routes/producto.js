@@ -127,16 +127,8 @@ productoRoutes.get('/:id', [autenticacion_1.verificaToken], (req, res) => {
 //******************************************************************************//
 productoRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) => {
     const id = req.params.id;
-    const producto = {
-        nombre: req.body.nombre,
-        precio: req.body.precio,
-        decripcion: req.body.decripcion,
-        marca: req.body.marca,
-        garantia: req.body.garantia,
-        referencia: req.body.referencia,
-        material: req.body.material,
-    };
-    producto_model_1.Producto.findByIdAndUpdate(id, producto, { new: true }, (err, pDB) => {
+    const body = req.body;
+    producto_model_1.Producto.findById(id, (err, pDB) => {
         if (!pDB) {
             return res.json({
                 ok: false,
@@ -149,9 +141,24 @@ productoRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, re
                 err
             });
         }
-        res.json({
-            ok: true,
-            producto
+        pDB.nombre = body.nombre || req.params.nombre;
+        pDB.precio = body.precio || req.params.precio;
+        pDB.decripcion = body.decripcion || req.params.decripcion;
+        pDB.marca = body.marca || req.params.marca;
+        pDB.garantia = body.garantia || req.params.garantia;
+        pDB.referencia = body.referencia || req.params.referencia;
+        pDB.material = body.material || req.params.material;
+        pDB.save((err, pGuardado) => {
+            if (err) {
+                res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+            res.json({
+                ok: true,
+                producto: pGuardado
+            });
         });
     });
 });
@@ -213,7 +220,8 @@ productoRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
 //mostrar producto por id
 //*************************************************************** */
 productoRoutes.get('/buscar/:id', (req, res) => {
-    producto_model_1.Producto.findById(req.params.id)
+    let termino = req.params.id;
+    producto_model_1.Producto.find({ _id: termino })
         .populate('usuario', '-password')
         .exec((err, productos) => {
         if (!productos) {
@@ -228,9 +236,12 @@ productoRoutes.get('/buscar/:id', (req, res) => {
             });
         }
         ;
-        res.json({
-            ok: true,
-            producto: productos,
+        producto_model_1.Producto.count({ post: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                producto: productos,
+                suma
+            });
         });
     });
 });
