@@ -245,12 +245,12 @@ postRoutes.get('/postUser/:termino', async(req, res) => {
 
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
-    skip = skip * 10;
+    skip = skip * 100;
     let  termino = req.params.termino
     await Post.find({usuario: termino})
     .sort({ _id: -1 })
     .skip( skip )
-    .limit(10)
+    .limit(100)
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
