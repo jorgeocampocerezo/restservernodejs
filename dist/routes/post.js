@@ -151,8 +151,8 @@ postRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, res) =
     });
 });
 //mostrar post por id 
-postRoutes.get('/:id', (req, res) => {
-    post_model_1.Post.findById(req.params.id)
+postRoutes.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    yield post_model_1.Post.findById(req.params.id)
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
@@ -172,7 +172,7 @@ postRoutes.get('/:id', (req, res) => {
             post: posts
         });
     });
-});
+}));
 //Busca los post del usuario
 postRoutes.get('/postUser/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let pagina = Number(req.query.pagina) || 1;
