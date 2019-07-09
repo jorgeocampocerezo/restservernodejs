@@ -38,10 +38,10 @@ postRoutes.get('/', async (req: any, res: Response) => {
 
 postRoutes.get('/feria/:termino', async(req, res) => {
 
-    const  termino = req.params.termino
+    let  termino = req.params.termino
 
   
-    await Post.find(termino)
+    await Post.findById(termino)
     
    .populate('usuario', '-password')
    .exec((err,posts)=>{
