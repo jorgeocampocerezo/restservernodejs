@@ -36,8 +36,8 @@ postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
 }));
 //post por id para categoria/feria
 postRoutes.get('/feria/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const termino = req.params.termino;
-    yield post_model_1.Post.find({ _id: termino })
+    const id = req.params.id;
+    yield post_model_1.Post.find(id)
         .populate('usuario', '-password')
         .exec((err, posts) => {
         if (!posts) {
