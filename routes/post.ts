@@ -39,8 +39,7 @@ postRoutes.get('/', async (req: any, res: Response) => {
 postRoutes.get('/feria/:termino', async(req, res) => {
 
   
-    let  termino = req.params.termino
-    await Post.find({post: termino})
+    await Post.findById(req.params.termino)
     
    .populate('usuario', '-password')
    .exec((err,posts)=>{
@@ -60,13 +59,11 @@ postRoutes.get('/feria/:termino', async(req, res) => {
            
        };
       
-       Post.count( {usuario: termino}, (err,suma) =>{
-
+       
            res.json({
             ok: true,
             posts,
-            suma
-       })
+      
         
 
        });
