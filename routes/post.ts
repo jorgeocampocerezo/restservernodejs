@@ -208,7 +208,7 @@ postRoutes.post('/actualizar/:id',[verificaToken],(req:any,res:Response)=>{
 postRoutes.get('/:id', (req:any, res:Response) => {
 
     
-    Post.find(req.params.id)
+    Post.findById(req.params.id)
    .populate('usuario', '-password')
    .exec((err,posts)=>{
 
