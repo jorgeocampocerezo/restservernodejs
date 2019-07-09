@@ -34,6 +34,33 @@ postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
         posts
     });
 }));
+//post por id para categoria/feria
+postRoutes.get('/feria/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let termino = req.params.termino;
+    yield post_model_1.Post.find({ post: termino })
+        .populate('usuario', '-password')
+        .exec((err, posts) => {
+        if (!posts) {
+            return res.json({
+                ok: false,
+                posts: []
+            });
+        }
+        if (err) {
+            return res.json({
+                err
+            });
+        }
+        ;
+        post_model_1.Post.count({ usuario: termino }, (err, suma) => {
+            res.json({
+                ok: true,
+                posts,
+                suma
+            });
+        });
+    });
+}));
 //cuenta posts 
 postRoutes.get('/numeroPosts', [autenticacion_1.verificaToken], (req, res) => {
     post_model_1.Post.find({})

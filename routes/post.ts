@@ -33,6 +33,49 @@ postRoutes.get('/', async (req: any, res: Response) => {
 
 });
 
+
+//post por id para categoria/feria
+
+postRoutes.get('/feria/:termino', async(req, res) => {
+
+  
+    let  termino = req.params.termino
+    await Post.find({post: termino})
+    
+   .populate('usuario', '-password')
+   .exec((err,posts)=>{
+
+    if(!posts){
+        return res.json({
+            ok:false,
+            posts:[]
+        })
+    }  
+    
+    if(err){
+           return res.json({
+            err
+           })
+               
+           
+       };
+      
+       Post.count( {usuario: termino}, (err,suma) =>{
+
+           res.json({
+            ok: true,
+            posts,
+            suma
+       })
+        
+
+       });
+   
+   });
+});
+
+
+
 //cuenta posts 
 
 postRoutes.get('/numeroPosts', [verificaToken], (req:any, res:Response) => {
