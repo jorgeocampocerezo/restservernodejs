@@ -310,6 +310,8 @@ productoRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
 productoRoutes.get('/buscar/:id', (req:any, res:Response) => {
 
     Producto.findById(req.params.id)
+   .populate('post')
+
    .populate('usuario', '-password')
    .exec((err,productos)=>{
 
