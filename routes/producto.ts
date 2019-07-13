@@ -78,11 +78,6 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
         });
     })
    })
-
-   
-    
-
-      
    
    });
 
