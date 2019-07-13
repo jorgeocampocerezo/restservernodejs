@@ -69,7 +69,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
     });
 });
 //******************************************************************************//
-//crear un producto
+//crear un productos
 //******************************************************************************//
 productoRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
     const body = req.body;

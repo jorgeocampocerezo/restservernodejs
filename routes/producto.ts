@@ -81,13 +81,9 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
    
    });
 
-
-
-
-
 //******************************************************************************//
 
-//crear un producto
+//crear un productos
 //******************************************************************************//
 
 productoRoutes.post('/', [ verificaToken ], async (req: any, res: Response) => {
