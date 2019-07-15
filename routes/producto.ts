@@ -272,7 +272,7 @@ productoRoutes.delete('/borrar/:id',verificaToken,(req,res)=>{
         }
        res.json({
            ok:true,
-           mensaje:'El post fue eliminado'
+           mensaje: `${id}`
        })
     });
 })

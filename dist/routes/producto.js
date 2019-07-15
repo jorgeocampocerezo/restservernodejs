@@ -196,7 +196,7 @@ productoRoutes.delete('/borrar/:id', autenticacion_1.verificaToken, (req, res) =
         }
         res.json({
             ok: true,
-            mensaje: 'El post fue eliminado'
+            mensaje: `${id}`
         });
     });
 });
