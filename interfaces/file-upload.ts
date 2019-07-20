@@ -5,7 +5,7 @@ export interface FileUpload{
     name:string;
     data: any;
     encoding: string;
-     tempFilePath: "";
+     tempFilePath: string;
      truncated: boolean;
      mimetype:string;
       
