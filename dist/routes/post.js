@@ -307,11 +307,10 @@ postRoutes.get('/sumaCat/:categoria', (req, res) => {
     });
 });
 /////**////////////////////////////////// */
-postRoutes.get('/', [autenticacion_1.verificaToken], (req, res) => {
-    const post = req.post;
-    res.json({
-        ok: true,
-        post
-    });
+postRoutes.get('/imagen/:userid/:img', (req, res) => {
+    const userId = req.params.userid;
+    const img = req.params.img;
+    const pathFoto = fileSystem.getFotoUrl(userId, img);
+    res.sendFile(pathFoto);
 });
 exports.default = postRoutes;

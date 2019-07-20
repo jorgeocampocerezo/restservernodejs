@@ -439,14 +439,14 @@ let  categoria = req.params.categoria
 /////**////////////////////////////////// */
 
 
-postRoutes.get('/', [ verificaToken ], ( req: any, res: Response ) => {
+postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 
-    const post = req.post;
+    const userId = req.params.userid;
+    const img    = req.params.img;
 
-    res.json({
-        ok: true,
-        post
-    });
+    const pathFoto = fileSystem.getFotoUrl( userId, img );
+
+    res.sendFile( pathFoto );
 
 });
 
