@@ -10,12 +10,14 @@ const postSchema = new mongoose_1.Schema({
     },
     imgs: [{
             type: String,
+            required: [true, 'La imagen es nesesaria']
         }],
     gps: {
         type: String // -13.313123, 12.3123123
     },
     categoria: {
         type: String,
+        required: true
     },
     transporte: {
         type: String

@@ -11,6 +11,7 @@ const postSchema = new Schema({
     },
     imgs: [{
         type: String,
+        required: [ true, 'La imagen es nesesaria' ]
 
     }],
     gps: {
@@ -19,7 +20,7 @@ const postSchema = new Schema({
     categoria:{
 
         type:String,
-        
+        required:true
     },
     transporte:{
         type:String
