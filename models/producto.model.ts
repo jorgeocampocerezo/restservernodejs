@@ -27,7 +27,8 @@ const productoSchema = new Schema({
     },
     descripcion:{
         type:String
-    },imgs:[{
+    },
+    imgs:[{
         type:String,
         
     }],
@@ -51,7 +52,8 @@ interface IProducto extends Document {
     nombre:string;
     precio:string;
     descripcion:string;
-    img:string;
+    img: string[];
+    
     usuario:string;
     marca:string;
     post:string
