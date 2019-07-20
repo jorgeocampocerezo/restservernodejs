@@ -25,8 +25,7 @@ const productoSchema = new mongoose_1.Schema({
     },
     descripcion: {
         type: String
-    },
-    imgs: [{
+    }, imgs: [{
             type: String,
         }],
     post: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Post', required: true },
