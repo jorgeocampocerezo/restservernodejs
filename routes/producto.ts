@@ -12,7 +12,7 @@ const fileSystem = new FileSystem();
 
 //listar productos por categoria
 
-productoRoutes.get('/productosCategoria/:termino',[verificaToken], async (req:any, res:Response) => {
+productoRoutes.get('/productosCategoria/:termino', async (req:any, res:Response) => {
 
     let  termino = req.params.termino
     let pagina = Number(req.query.pagina) || 1;

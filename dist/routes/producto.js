@@ -18,7 +18,7 @@ const file_system_1 = __importDefault(require("../classes/file-system"));
 const productoRoutes = express_1.Router();
 const fileSystem = new file_system_1.default();
 //listar productos por categoria
-productoRoutes.get('/productosCategoria/:termino', [autenticacion_1.verificaToken], (req, res) => __awaiter(this, void 0, void 0, function* () {
+productoRoutes.get('/productosCategoria/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let termino = req.params.termino;
     let pagina = Number(req.query.pagina) || 1;
     let skip = pagina - 1;
