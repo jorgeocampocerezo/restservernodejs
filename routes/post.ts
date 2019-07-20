@@ -180,6 +180,7 @@ postRoutes.post( '/upload', [ verificaToken ], async (req: any, res: Response) =
 });
 
 
+
 //obtener la imagen del post
 postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 
