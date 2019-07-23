@@ -184,9 +184,9 @@ postRoutes.post( '/upload', [ verificaToken ], async (req: any, res: Response) =
 postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 
     const userId = req.params.userid;
-    const imgs    = req.params.imgs;
+    const img    = req.params.img;
 
-    const pathFoto = fileSystem.getFotoUrl( userId, imgs );
+    const pathFoto = fileSystem.getFotoUrl( userId, img );
 
     res.sendFile( pathFoto );
 

@@ -131,8 +131,8 @@ postRoutes.post('/upload', [autenticacion_1.verificaToken], (req, res) => __awai
 //obtener la imagen del post
 postRoutes.get('/imagen/:userid/:img', (req, res) => {
     const userId = req.params.userid;
-    const imgs = req.params.imgs;
-    const pathFoto = fileSystem.getFotoUrl(userId, imgs);
+    const img = req.params.img;
+    const pathFoto = fileSystem.getFotoUrl(userId, img);
     res.sendFile(pathFoto);
 });
 ///actualizar post
