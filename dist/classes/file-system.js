@@ -65,11 +65,11 @@ class FileSystem {
     }
     getFotoUrl(userId, img) {
         // Path POSTs
-        const pathFoto = path_1.default.resolve(__dirname, '../dist/uploads', userId, 'posts', img);
+        const pathFoto = path_1.default.resolve(__dirname, '../uploads', userId, 'posts', img);
         // Si la imagen existe
         const existe = fs_1.default.existsSync(pathFoto);
         if (!existe) {
-            return path_1.default.resolve(__dirname, '../dist/assets/400x250.jpg');
+            return path_1.default.resolve(__dirname, '../assets/400x250.jpg');
         }
         return pathFoto;
     }
