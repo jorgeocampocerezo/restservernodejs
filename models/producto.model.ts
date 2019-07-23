@@ -39,7 +39,7 @@ const productoSchema = new Schema({
 
 })
 
-//iamgeenes
+
 
 productoSchema.pre<IProducto>('save', function( next ) {
     this.created = new Date();
