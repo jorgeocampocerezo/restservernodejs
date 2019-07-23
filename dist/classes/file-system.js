@@ -60,7 +60,7 @@ class FileSystem {
         return imagenesTemp;
     }
     obtenerImagenesEnTemp(userId) {
-        const pathTemp = path_1.default.resolve(__dirname, '../dist/uploads/', userId, 'temp');
+        const pathTemp = path_1.default.resolve(__dirname, '../uploads/', userId, 'temp');
         return fs_1.default.readdirSync(pathTemp) || [];
     }
     getFotoUrl(userId, img) {
@@ -69,7 +69,7 @@ class FileSystem {
         // Si la imagen existe
         const existe = fs_1.default.existsSync(pathFoto);
         if (!existe) {
-            return path_1.default.resolve(__dirname, '../assets/400x250.jpg');
+            return path_1.default.resolve(__dirname, '../dist/assets/400x250.jpg');
         }
         return pathFoto;
     }

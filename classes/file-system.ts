@@ -90,7 +90,7 @@ export default class FileSystem {
 
     private obtenerImagenesEnTemp( userId: string ) {
 
-        const pathTemp = path.resolve(  __dirname, '../dist/uploads/', userId, 'temp' );
+        const pathTemp = path.resolve(  __dirname, '../uploads/', userId, 'temp' );
 
         return fs.readdirSync( pathTemp ) || [];
 
@@ -106,7 +106,7 @@ export default class FileSystem {
         // Si la imagen existe
         const existe = fs.existsSync( pathFoto );
         if ( !existe ) {
-            return path.resolve( __dirname, '../assets/400x250.jpg' );
+            return path.resolve( __dirname, '../dist/assets/400x250.jpg' );
         }
 
 
