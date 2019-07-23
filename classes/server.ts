@@ -7,7 +7,7 @@ export default class Server {
     public app : express.Application;
 //antes    public PORT= process.env.PORT || 3000;
 
-    public PORT= process.env.PORT;
+    public PORT= process.env.PORT || 3000;
 
     constructor() { 
         this.app = express();

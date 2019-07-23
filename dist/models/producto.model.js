@@ -31,6 +31,7 @@ const productoSchema = new mongoose_1.Schema({
     post: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Post', required: true },
     usuario: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Usuario' }
 });
+//imagene
 productoSchema.pre('save', function (next) {
     this.created = new Date();
     next();
