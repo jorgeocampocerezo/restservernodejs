@@ -96,7 +96,7 @@ export default class FileSystem {
 
     }
 
-
+//botener iamgen
     getFotoUrl( userId: string, img: string ) {
 
         // Path POSTs
