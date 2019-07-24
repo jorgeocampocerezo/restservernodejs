@@ -306,7 +306,7 @@ postRoutes.get('/sumaCat/:categoria', (req, res) => {
         });
     });
 });
-/////**////////////////////////////////// */
+/////**obtener imagen////////////////////////////////// */
 postRoutes.get('/imagen/:userid/:img', (req, res) => {
     const userId = req.params.userid;
     const img = req.params.img;

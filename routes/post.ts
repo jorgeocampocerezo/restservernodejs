@@ -436,7 +436,7 @@ let  categoria = req.params.categoria
    });
 
 
-/////**////////////////////////////////// */
+/////**obtener imagen////////////////////////////////// */
 
 
 postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
