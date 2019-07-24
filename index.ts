@@ -18,14 +18,14 @@ server.app.use( bodyParser.json() );
 server.app.use( fileUpload({useTempFiles:true}));
 
 //configurar cors
-//server.app.use(cors({origin : true, credentials: true}));
-server.app.use(function(req,res,next){
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Origin","POST, GET, PUT, DELETE, OPTIONES");
-    res.header("Access-Control-Allow-Origin","Origin, X-Requested-With");
-    next()
+server.app.use(cors({origin : true, credentials: true}));
+//server.app.use(function(req,res,next){
+//    res.header("Access-Control-Allow-Origin","*");
+//    res.header("Access-Control-Allow-Origin","POST, GET, PUT, DELETE, OPTIONES");
+//    res.header("Access-Control-Allow-Origin","Origin, X-Requested-With");
+//    next()
 
-});
+//});
 
 
 // Rutas de mi app
