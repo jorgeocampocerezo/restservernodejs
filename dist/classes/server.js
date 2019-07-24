@@ -7,7 +7,8 @@ const express_1 = __importDefault(require("express"));
 class Server {
     constructor() {
         //antes    public PORT= process.env.PORT || 3000;
-        this.PORT = 3000;
+        //public PORT: number = 3000;
+        this.PORT = process.env.PORT || 3000;
         this.app = express_1.default();
     }
     start(callback) {
