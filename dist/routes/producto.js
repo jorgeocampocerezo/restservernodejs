@@ -69,7 +69,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
     });
 });
 /***listar por tipo */
-productoRoutes.get('/productosUsuario/:tipo', (req, res) => {
+productoRoutes.get('/productostipo/:termino', (req, res) => {
     let termino = req.params.termino;
     producto_model_1.Producto.find({ tipo: termino })
         .populate('post')
