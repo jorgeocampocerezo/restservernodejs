@@ -71,7 +71,7 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
 /***listar por tipo */
 productoRoutes.get('/productostipo/:id/:termino', (req, res) => {
     let termino = req.params.termino;
-    let id = req.params._id;
+    let id = req.params.id;
     producto_model_1.Producto.find({ tipo: termino, usuario: id })
         .populate('post')
         .populate('usuario', '-password')
