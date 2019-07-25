@@ -85,11 +85,11 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
 productoRoutes.get('/productostipo/:id/:termino', (req, res) => {
 
     let  termino = req.params.termino
-    let  id = req.params.id
+    let  _id = req.params._id
 
   
 
-    Producto.find({tipo: termino},{usuario: id})
+    Producto.find({tipo: termino},{usuario: _id})
    .populate('post')
    .populate('usuario', '-password')
    .exec((err, productos) =>{
