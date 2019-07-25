@@ -9,7 +9,7 @@ const productoSchema = new mongoose_1.Schema({
         type: String,
     },
     precio: {
-        type: Number
+        type: String,
     },
     marca: {
         type: String

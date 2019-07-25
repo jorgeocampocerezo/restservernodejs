@@ -11,7 +11,7 @@ const productoSchema = new Schema({
         type:String,
     },
     precio:{
-        type:Number
+        type: String,
     },
     marca:{
         type:String
