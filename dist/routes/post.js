@@ -34,6 +34,16 @@ postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
         posts
     });
 }));
+// Obtener Todos los POST paginados
+postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const posts = yield post_model_1.Post.find()
+        .populate('usuario', '-password')
+        .exec();
+    res.json({
+        ok: true,
+        posts
+    });
+}));
 //post por id para categoria/feria
 postRoutes.get('/feria/:termino', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let termino = req.params.termino;

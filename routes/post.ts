@@ -34,6 +34,28 @@ postRoutes.get('/', async (req: any, res: Response) => {
 });
 
 
+// Obtener Todos los POST paginados
+postRoutes.get('/', async (req: any, res: Response) => {
+
+
+    const posts = await Post.find()
+                            .populate('usuario', '-password')
+                            .exec();
+
+
+    res.json({
+        ok: true,
+        posts
+    });
+
+
+});
+
+
+
+
+
+
 //post por id para categoria/feria
 
 postRoutes.get('/feria/:termino', async(req, res) => {
