@@ -81,48 +81,6 @@ productoRoutes.get('/productosUsuario/:termino', (req, res) => {
    
    });
 
-/***listar por tipo */
-productoRoutes.get('/productostipo/:id/:termino', (req, res) => {
-
-    let  termino = req.params.termino
-    let  id = req.params.id
-
-  
-
-    Producto.find({tipo: termino , usuario: id})
-   .populate('post')
-   .populate('usuario', '-password')
-   .exec((err, productos) =>{
-    if(!productos){
-        return res.json({
-            ok:false,
-            posts:[]
-        })
-    }  
-    if(err){
-        return res.json({
-         err
-        })
-            
-        
-    };
-    
-    Producto.count({tipo:termino, usuario:id}, (err, suma)=>{
-
-        res.json({
-            ok: true,
-            productos,
-           suma
-        });
-    })
-   })
-   
-   });
-
-
-
-
-
 //******************************************************************************//
 
 //crear un productos
