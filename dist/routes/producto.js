@@ -137,6 +137,8 @@ productoRoutes.post('/actualizar/:id', [autenticacion_1.verificaToken], (req, re
         }
         pDB.nombre = body.nombre || req.params.nombre;
         pDB.precio = body.precio || req.params.precio;
+        pDB.tipo = body.tipo || req.params.tipo;
+        pDB.numero = body.numero || req.params.numero;
         pDB.descripcion = body.descripcion || req.params.descripcion;
         pDB.marca = body.marca || req.params.marca;
         pDB.garantia = body.garantia || req.params.garantia;

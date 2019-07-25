@@ -14,6 +14,12 @@ const productoSchema = new mongoose_1.Schema({
     marca: {
         type: String
     },
+    tipo: {
+        type: String
+    },
+    numero: {
+        type: String
+    },
     garantia: {
         type: String
     },

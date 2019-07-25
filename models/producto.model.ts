@@ -16,6 +16,12 @@ const productoSchema = new Schema({
     marca:{
         type:String
     },
+    tipo:{
+        type:String
+    },
+    numero:{
+        type:String
+    },
     garantia:{
         type:String
     },
@@ -54,7 +60,9 @@ interface IProducto extends Document {
     img: string[];    
     usuario:string;
     marca:string;
-    post:string
+    post:string;
+    numero:string;
+    tipo:string;
     garantia:string;
     referencia:string;
     material:string;
