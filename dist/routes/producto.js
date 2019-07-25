@@ -88,7 +88,7 @@ productoRoutes.get('/productostipo/:id/:termino', (req, res) => {
             });
         }
         ;
-        producto_model_1.Producto.count({ tipo: termino }, (err, suma) => {
+        producto_model_1.Producto.count({ tipo: termino, usuario: id }, (err, suma) => {
             res.json({
                 ok: true,
                 productos,

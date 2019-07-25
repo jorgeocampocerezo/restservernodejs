@@ -107,7 +107,7 @@ productoRoutes.get('/productostipo/:id/:termino', (req, res) => {
         
     };
     
-    Producto.count({tipo:termino}, (err, suma)=>{
+    Producto.count({tipo:termino, usuario:id}, (err, suma)=>{
 
         res.json({
             ok: true,
