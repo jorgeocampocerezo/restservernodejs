@@ -35,7 +35,7 @@ postRoutes.get('/', async (req: any, res: Response) => {
 
 
 // Obtener Todos los POST paginados
-postRoutes.get('/', async (req: any, res: Response) => {
+postRoutes.get('/todos', async (req: any, res: Response) => {
 
 
     const posts = await Post.find()

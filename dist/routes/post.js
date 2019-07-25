@@ -35,7 +35,7 @@ postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
     });
 }));
 // Obtener Todos los POST paginados
-postRoutes.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+postRoutes.get('/todos', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const posts = yield post_model_1.Post.find()
         .populate('usuario', '-password')
         .exec();
