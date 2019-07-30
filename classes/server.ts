@@ -8,7 +8,9 @@ export default class Server {
 //antes    public PORT= process.env.PORT || 3000;
 
     //public PORT: number = 3000;
-    public PORT= process.env.PORT || 3000;
+//    public PORT= process.env.PORT || 3000;
+    public PORT= process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
 
 
     constructor() { 
